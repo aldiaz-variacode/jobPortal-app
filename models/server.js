@@ -1,6 +1,7 @@
 class Server {
     constructor(express, cors) {
-        this.app = express;
+        this.express = express;
+        this.app = express();
         this.cors = cors;
         this.port = process.env.PORT || 3000;
 
@@ -13,21 +14,21 @@ class Server {
 
     middlewares() {
         //CORS
-        this.app().use(this.cors());
+        this.app.use(this.cors());
 
         //Reading and parsing the body
-        this.app().use(this.app.json());
+        this.app.use(this.express.json());
 
         //Public directory
-        this.app().use(this.app.static('public'));
+        this.app.use(this.express.static('public'));
     }
 
     routes() {
-        this.app().use('/', require('../routes/index.routes'));
+        this.app.use('/', require('../routes/index.routes'));
     }
 
     listen() {
-        this.app().listen(this.port, () => {
+        this.app.listen(this.port, () => {
             console.log('Servidor corriendo en puerto', this.port);
         });
     }

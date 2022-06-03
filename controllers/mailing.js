@@ -3,8 +3,14 @@ const { StatusCodes: code } = require('http-status-codes');
 const Mailer = require('../models/mail.js');
 
 module.exports = {
+    get: async (req = request, res = response) => {
+        res.status(code.OK)
+            .json({ msg: 'No tengo nada que mostrar - get' })
+            .end();
+    },
     email: async (req = request, res = response) => {
         try {
+            console.log(req.body);
             const { email, subject, body } = req.body;
             const mail = new Mailer('gmail', email, subject, body);
             mail.sendMail();
@@ -17,5 +23,15 @@ module.exports = {
                 })
                 .end();
         }
+    },
+    put: async (req = request, res = response) => {
+        res.status(code.OK)
+            .json({ msg: 'No tengo nada que mostrar - put' })
+            .end();
+    },
+    delete: async (req = request, res = response) => {
+        res.status(code.OK)
+            .json({ msg: 'No tengo nada que mostrar - delete' })
+            .end();
     },
 };

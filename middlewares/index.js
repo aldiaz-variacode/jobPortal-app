@@ -1,4 +1,4 @@
-const { validate: validateInputs } = require('../middlewares/validarCampos');
+const { validate: validateInputs } = require('./validateInputs');
 
 module.exports = {
     validateInputs,

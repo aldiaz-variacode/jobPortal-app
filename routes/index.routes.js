@@ -5,6 +5,6 @@ const mailingRoutes = require('./mailing');
 const router = Router();
 
 //router.use('/', route.js)
-router.use('/api/mailing');
+router.use('/mailing', mailingRoutes);
 
 module.exports = router;

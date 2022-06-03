@@ -6,7 +6,7 @@ class Mailer {
         this.passMail = process.env.PASS_MAIL;
         this.mailService = mailService;
         this.transporter = nodemailer.createTransport({
-            service: 'this.mailService',
+            service: this.mailService,
             auth: {
                 user: this.userMail,
                 pass: this.passMail,

@@ -1,19 +1,24 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
-const middlewares = require('../middlewares');
 const mailingController = require('../controllers/mailing');
+const middlewares = require('../middlewares');
 
 const router = Router();
 
 router
     .route('/')
+    .get(mailingController.get)
     .post(
-        [
-            check('email', 'El email es requerido').notEmpty(),
-            check('email', 'El email no es valido').isEmail(),
-            check('subject', 'El asunto es requerido'),
-            check('body', 'El mensaje es requerido').notEmpty(),
-            middlewares.validateInputs,
-        ],
+        // [
+        //     check('email', 'El email es requerido').notEmpty(),
+        //     check('email', 'El email no es valido').isEmail(),
+        //     check('subject', 'El asunto es requerido'),
+        //     check('body', 'El mensaje es requerido').notEmpty(),
+        //     middlewares.validateInputs,
+        // ],
         mailingController.email
-    );
+    )
+    .put(mailingController.put)
+    .delete(mailingController.delete);
+
+module.exports = router;
