@@ -10,7 +10,6 @@ module.exports = {
     },
     email: async (req = request, res = response) => {
         try {
-            console.log(req.body);
             const { email, subject, body } = req.body;
             const mail = new Mailer('gmail', email, subject, body);
             mail.sendMail();

@@ -9,13 +9,13 @@ router
     .route('/')
     .get(mailingController.get)
     .post(
-        // [
-        //     check('email', 'El email es requerido').notEmpty(),
-        //     check('email', 'El email no es valido').isEmail(),
-        //     check('subject', 'El asunto es requerido'),
-        //     check('body', 'El mensaje es requerido').notEmpty(),
-        //     middlewares.validateInputs,
-        // ],
+        [
+            check('email', 'El email es requerido').notEmpty(),
+            check('email', 'El email no es valido').isEmail(),
+            check('subject', 'El asunto es requerido').notEmpty(),
+            check('body', 'El mensaje es requerido').notEmpty(),
+            middlewares.validateInputs,
+        ],
         mailingController.email
     )
     .put(mailingController.put)
