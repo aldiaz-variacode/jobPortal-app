@@ -10,8 +10,8 @@ module.exports = {
     },
     email: async (req = request, res = response) => {
         try {
-            const { email, subject, body } = req.body;
-            const mail = new Mailer('gmail', email, subject, body);
+            const { email, subject, message } = req.body;
+            const mail = new Mailer('gmail', email, subject, message);
             mail.sendMail();
             res.status(code.OK).json({ msg: 'Email enviado con exito' }).end();
         } catch (error) {
