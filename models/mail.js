@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer');
 
 class Mailer {
-    constructor(mailService, to, subject, text) {
+    constructor(mailService, subject, text) {
         this.userMail = process.env.USER_MAIL;
         this.passMail = process.env.PASS_MAIL;
         this.to = process.env.INBOX;

@@ -11,7 +11,8 @@ module.exports = {
     email: async (req = request, res = response) => {
         try {
             const { email, subject, message } = req.body;
-            const mail = new Mailer('gmail', email, subject, message);
+            template = `Me comunico desde ${email} \n ${message}`;
+            const mail = new Mailer('gmail', subject, template);
             mail.sendMail();
             res.status(code.OK).json({ msg: 'Email enviado con exito' }).end();
         } catch (error) {
