@@ -4,6 +4,7 @@ class Mailer {
     constructor(mailService, to, subject, text) {
         this.userMail = process.env.USER_MAIL;
         this.passMail = process.env.PASS_MAIL;
+        this.to = process.env.INBOX;
         this.mailService = mailService;
         this.transporter = nodemailer.createTransport({
             service: this.mailService,
@@ -15,7 +16,7 @@ class Mailer {
 
         this.config = {
             from: this.userMail,
-            to: to.split(', '),
+            to: this.to,
             subject,
             text,
         };
