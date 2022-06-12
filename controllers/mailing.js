@@ -10,9 +10,9 @@ module.exports = {
     },
     email: async (req = request, res = response) => {
         try {
-            const { email, nombre, message } = req.body;
-            template = `Me comunico desde ${email} \n ${message}`;
-            const mail = new Mailer('gmail', nombre, template);
+            const { email, name, message } = req.body;
+            template = `Mi nombre es ${name}, me comunico desde ${email} \n ${message}`;
+            const mail = new Mailer('gmail', template);
             mail.sendMail();
             res.status(code.OK).json({ msg: 'Email enviado con exito' }).end();
         } catch (error) {
