@@ -12,7 +12,7 @@ router
         [
             check('email', 'El email es requerido').notEmpty(),
             check('email', 'El email no es valido').isEmail(),
-            check('subject', 'El asunto es requerido').notEmpty(),
+            check('name', 'El nombre es requerido').notEmpty(),
             check('message', 'El mensaje es requerido').notEmpty(),
             middlewares.validateInputs,
         ],
