@@ -1,18 +1,9 @@
 class Server {
-    constructor(express, cors) {
+    constructor(express, cors, fileUpload) {
         this.express = express;
         this.app = express();
         this.cors = cors;
-        // this.whitelist = ['http://localhost:3000', 'https://www.linkedin.com/']
-        // this.corsOptions = {
-        //     origin: (origin, callback) => {
-        //         if (this.whitelist.indexOf(origin) !== -1 ) {
-        //             callback(null, true)
-        //         } else {
-        //             callback(new Error('Not allowed by CORS'))
-        //         }
-        //     }
-        // }
+        this.fileUpload = fileUpload
         this.port = process.env.PORT || 3000;
 
         //Middlewares
@@ -25,6 +16,14 @@ class Server {
     middlewares() {
         //CORS
         this.app.use(this.cors());
+
+        //FileUpload
+        this.app.use(this.fileUpload({
+            limits: { fileSize: 5000000 },
+            abortOnLimit: true,
+            debug:true,
+            responseOnLimit: "El peso del archivo que intentas subir supera el limite permitido",
+        }))
 
         //Reading and parsing the body
         this.app.use(this.express.json());

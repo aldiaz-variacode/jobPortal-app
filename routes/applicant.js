@@ -1,15 +1,14 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
-const { authorization } = require('../controllers/auth');
-const authController = require('../controllers/auth');
+const applicantController = require('../controllers/applicant');
 const middlewares = require('../middlewares');
 
 const router = Router();
 
 router
     .route('/')
-    .get(authController.authorization)
-    .post(authController.authentication)
+    .post(applicantController.create)
+
     // .post(
     //     [
     //         check('email', 'El email es requerido').notEmpty(),

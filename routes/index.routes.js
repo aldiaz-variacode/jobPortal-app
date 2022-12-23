@@ -1,12 +1,10 @@
 const { Router } = require('express');
 
 //import especific routes from routes directory
-const jobPostingRoutes = require('./jobposting');
-const authRoutes = require('./auth');
+const applicantRoutes = require('./applicant');
 const router = Router();
 
 //router.use('/', route.js)
-router.use('/jobposting', jobPostingRoutes);
-router.use('/auth', authRoutes);
+router.use('/applicant', applicantRoutes);
 
 module.exports = router;
