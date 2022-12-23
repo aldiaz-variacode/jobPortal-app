@@ -3,6 +3,16 @@ class Server {
         this.express = express;
         this.app = express();
         this.cors = cors;
+        // this.whitelist = ['http://localhost:3000', 'https://www.linkedin.com/']
+        // this.corsOptions = {
+        //     origin: (origin, callback) => {
+        //         if (this.whitelist.indexOf(origin) !== -1 ) {
+        //             callback(null, true)
+        //         } else {
+        //             callback(new Error('Not allowed by CORS'))
+        //         }
+        //     }
+        // }
         this.port = process.env.PORT || 3000;
 
         //Middlewares
