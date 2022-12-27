@@ -21,7 +21,7 @@ class Server {
         this.app.use(this.fileUpload({
             limits: { fileSize: 5000000 },
             abortOnLimit: true,
-            debug:false,
+            debug:true,
             responseOnLimit: "El peso del archivo que intentas subir supera el limite permitido",
         }))
 
