@@ -10,7 +10,7 @@ module.exports = {
     getOneCondition: async (select = '*', table, condition) => {
         const query = `SELECT ${select} FROM ${table} WHERE ${condition};`;
         const result = await poolService.connect(query);
-        console.log(result.rows, 'query getOneCondition 13');
+        // console.log(result.rows, 'query getOneCondition 13');
         return result.rows
             .map(row => row.email);
     },
