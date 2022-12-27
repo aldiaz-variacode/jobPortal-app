@@ -15,12 +15,12 @@ module.exports = {
             }
             const { curriculum } = req.files
             const nameCV = helpers.uploader(id, curriculum)
-            if(nameCV===false){
+            if(nameCV.state===false){
                 res.status(code.INTERNAL_SERVER_ERROR).json({
                     msg: nameCV.msg
                 })
             }
-            const applicant = new applicantModel(id, name, email, phone, lastLaboralExperience, nameCV)
+            const applicant = new applicantModel(id, name, email, phone, lastLaboralExperience, nameCV.msg)
             const result = await query.insert([applicant.id, applicant.name, applicant.email, applicant.phone, applicant.lastLaboralExperience, applicant.urlCurriculum])
             console.log('Acción realizada con éxito, registro agregado');
             res.status(code.CREATED)

@@ -13,6 +13,9 @@ module.exports = {
             }
             console.log('Archivo guardado con exito')
         })
-        return `/upload/${nameCV}`
+        return {
+            state: true,
+            msg: `/upload/${nameCV}`
+        }
     }
 }
