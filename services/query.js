@@ -15,7 +15,7 @@ module.exports = {
             .map(row => row.email);
     },
     insert: async (values) => {
-        const query = `INSERT into applicant (id, name, email, phone, experience, urlcv) values ($1, $2, $3, $4, $5, $6) RETURNING *;`;
+        const query = `INSERT into applicant (id, name, email, phone, experience, cvurl) values ($1, $2, $3, $4, $5, $6) RETURNING *;`;
         const result = await poolService.connect(query, values);
         console.log(result.rows);
         return result.rows

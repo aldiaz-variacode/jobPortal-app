@@ -1,5 +1,6 @@
+const { response : res, request : req } = require('express');
 const { StatusCodes: code } = require('http-status-codes');
-const { validFileExtension } = require('./extensionValidator')
+const { validFileExtension } = require('./extensionValidator');
 
 module.exports = {
     uploader: (id, cv) => {
