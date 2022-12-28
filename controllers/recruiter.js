@@ -10,7 +10,7 @@ module.exports = {
         try {
             const { name, lastname, email, roleid } = req.body;
             const id = helpers.idGenerator()
-            const recruiter = new applicantModel(id, name, lastname, email, roleid)
+            const recruiter = new recruiterModel(id, name, lastname, email, roleid)
             const result = await query.insert('recruiter', [recruiter.id, recruiter.name, recruiter.lastname, recruiter.email, recruiter.roleid])
             console.log('Acción realizada con éxito, registro agregado');
             res.status(code.CREATED)
