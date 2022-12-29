@@ -9,7 +9,6 @@ module.exports = {
     create: async (req = request, res = response) => {
         try {
             const { description, position, location, recruiterId, jobTypeId } = req.body;
-            console.log(description, position, location, recruiterId, jobTypeId)
             const job = new jobModel(helpers.idGenerator(), description, position, location, recruiterId, jobTypeId)
             const dataForQuery = {
                 id: job.id,
@@ -19,11 +18,10 @@ module.exports = {
                 recruiterId: job.recruiterId,
                 jobTypeId: job.jobTypeId
             }
-            console.log(dataForQuery)
-            // const result = await query.insert('job', dataForQuery)
+            const result = await query.insert('job', dataForQuery)
             console.log('Acción realizada con éxito, registro agregado');
-            // res.status(code.CREATED)
-            //     .json({msg: 'Acción realizada con éxito, registro agregado', registro: result[0]});
+            res.status(code.CREATED)
+                .json({msg: 'Acción realizada con éxito, registro agregado', registro: result[0]});
         } catch (error) {
             console.log(error)
             res.status(code.BAD_REQUEST)
