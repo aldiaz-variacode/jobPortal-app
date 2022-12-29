@@ -16,7 +16,7 @@ module.exports = {
     },
     insert: async (table, data) => {
         const index = Object.keys(data).map((key, index)=>{
-            index =+1
+            index += 1
             return `$${index}`
         })
         const query = `INSERT into ${table} (${Object.keys(data).join()}) values (${index.join()}) RETURNING *;`;
