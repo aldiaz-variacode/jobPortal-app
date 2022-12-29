@@ -14,9 +14,12 @@ module.exports = {
         return result.rows
             .map(row => row.email);
     },
-    insert: async (table, values) => {
-        const query = `INSERT into ${table} (id, name, email, phone, experience, cvurl) values ($1, $2, $3, $4, $5, $6) RETURNING *;`;
-        const result = await poolService.connect(query, values);
+    insert: async (table, data) => {
+        const index = Object.keys(data).map((key, index)=>{
+            return `$${index}`
+        })
+        const query = `INSERT into ${table} (${Object.keys(data).join()}) values (${index.join()}) RETURNING *;`;
+        const result = await poolService.connect(query, Object.values(data));
         console.log(result.rows);
         return result.rows
     }
