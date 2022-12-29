@@ -16,7 +16,7 @@ module.exports = {
     },
     insert: async (table, data) => {
         const index = Object.keys(data).map((key, index)=>{
-            return `$${index}`
+            return `$${index}`+1
         })
         const query = `INSERT into ${table} (${Object.keys(data).join()}) values (${index.join()}) RETURNING *;`;
         const result = await poolService.connect(query, Object.values(data));
