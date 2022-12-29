@@ -20,7 +20,14 @@ module.exports = {
                 })
             }
             const postulation = new postulationModel(helpers.idGenerator(), jobId, postulantId, experience, cvurl)
-            const result = await query.insert('job', [postulation.id, postulation.jobId, postulation.postulantId, postulation.experience, postulation.cvurl])
+            const dataForQuery = {
+                id: postulation.id,
+                jobId: postulation.jobId,
+                postulantId: postulation.postulantId,
+                experience: postulation.experience,
+                cvurl: postulation.cvurl
+            }
+            const result = await query.insert('postulation', dataForQuery);
             console.log('Acción realizada con éxito, registro agregado');
             res.status(code.CREATED)
                 .json({msg: 'Acción realizada con éxito, registro agregado', registro: result[0]});

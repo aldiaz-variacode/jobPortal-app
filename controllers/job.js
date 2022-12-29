@@ -10,7 +10,15 @@ module.exports = {
         try {
             const { description, position, location, recruiterId, jobTypeId } = req.body;
             const job = new jobModel(helpers.idGenerator(), description, position, location, recruiterId, jobTypeId)
-            const result = await query.insert('job', [job.id, job.description, job.position, job.location, job.recruiterId, job.jobTypeId])
+            const dataForQuery = {
+                id: job.id,
+                description: job.description,
+                position: job.position,
+                location: job.location,
+                recruiterId: job.recruiterId,
+                jobTypeId: job.jobTypeId
+            }
+            const result = await query.insert('job', dataForQuery)
             console.log('Acción realizada con éxito, registro agregado');
             res.status(code.CREATED)
                 .json({msg: 'Acción realizada con éxito, registro agregado', registro: result[0]});

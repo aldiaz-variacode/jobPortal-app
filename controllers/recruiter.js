@@ -17,7 +17,7 @@ module.exports = {
                 email: recruiter.email,
                 roleId: recruiter.roleId
             }
-            const result = await query.insert('recruiter', dataForQuery)
+            const result = await query.insert('recruiter', dataForQuery);
             console.log('Acción realizada con éxito, registro agregado');
             res.status(code.CREATED)
                 .json({msg: 'Acción realizada con éxito, registro agregado', registro: result[0]});
