@@ -13,7 +13,7 @@ router
         check('position', 'El cargo es requerido').notEmpty(),
         check('location', 'La ubicacion es requerida').notEmpty(),
         check('recruiterId', 'El id del reclutador es requerido').notEmpty(),
-        check('jobtypeId', 'El id del tipo de empleo es requerido').notEmpty(),
+        check('jobTypeId', 'El id del tipo de empleo es requerido').notEmpty(),
         middlewares.validateInputs
     ], jobController.create)
 

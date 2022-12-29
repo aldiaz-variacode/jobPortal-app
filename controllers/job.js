@@ -19,10 +19,11 @@ module.exports = {
                 recruiterId: job.recruiterId,
                 jobTypeId: job.jobTypeId
             }
-            const result = await query.insert('job', dataForQuery)
+            console.log(dataForQuery)
+            // const result = await query.insert('job', dataForQuery)
             console.log('Acción realizada con éxito, registro agregado');
-            res.status(code.CREATED)
-                .json({msg: 'Acción realizada con éxito, registro agregado', registro: result[0]});
+            // res.status(code.CREATED)
+            //     .json({msg: 'Acción realizada con éxito, registro agregado', registro: result[0]});
         } catch (error) {
             console.log(error)
             res.status(code.BAD_REQUEST)
