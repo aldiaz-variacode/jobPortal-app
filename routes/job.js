@@ -7,6 +7,7 @@ const router = Router();
 
 router
     .route('/')
+    .get(jobController.get)
     .post([
         check('description', 'La descripcion es requerida').notEmpty(),
         check('position', 'El cargo es requerido').notEmpty(),
@@ -15,5 +16,9 @@ router
         check('jobtypeId', 'El id del tipo de empleo es requerido').notEmpty(),
         middlewares.validateInputs
     ], jobController.create)
+
+router
+    .route('/:id')
+    .get(jobController.getOne)
 
 module.exports = router;

@@ -7,6 +7,7 @@ const router = Router();
 
 router
     .route('/')
+    .get(postulationController.get)
     .post([
         check('jobId', 'El id del empleo es requerido').notEmpty(),
         check('postulantId', 'El id del postulante es requerido').notEmpty(),
@@ -14,5 +15,9 @@ router
         check('cvurl', 'El cv es requerido').notEmpty(),
         middlewares.validateInputs
     ], postulationController.create)
+    
+router
+    .route('/:id')
+    .get(postulationController.getOne)
 
 module.exports = router;

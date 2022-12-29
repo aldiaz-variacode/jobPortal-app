@@ -9,8 +9,14 @@ module.exports = {
             .json({ msg: 'No tengo nada que mostrar - post' });
     },
     get: async (req = request, res = response) => {
-        const result = await query.get('role');
-        return res.status(code.OK)
-            .json({ msg: 'Accion exitosa', registros: result });
+        try {
+            const result = await query.get('role');
+            return res.status(code.OK)
+                .json({ msg: 'Accion exitosa', registros: result });
+        } catch (error) {
+            console.log(error)
+            res.status(code.BAD_REQUEST)
+                .json({msg: 'Accion rechazada', error: error})
+        }
     },
 };

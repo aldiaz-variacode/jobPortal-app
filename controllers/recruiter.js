@@ -28,7 +28,26 @@ module.exports = {
         }
     },
     get: async (req = request, res = response) => {
-        return res.status(code.OK)
-            .json({ msg: 'No tengo nada que mostrar - get' });
+        try {
+            const result = await query.get('recruiter');
+            return res.status(code.OK)
+                .json({ msg: 'Accion exitosa', registros: result });
+        } catch (error) {
+            console.log(error)
+            res.status(code.BAD_REQUEST)
+                .json({msg: 'Accion rechazada', error: error})
+        }
     },
+    getOne: async (req = request, res = response) => {
+        try {
+            const {id} = req.params;
+            const result = await query.getOneCondition('recruiter', `id = '${id}'`);
+            return res.status(code.OK)
+                .json({ msg: 'Accion exitosa', registros: result });
+        } catch (error) {
+            console.log(error)
+            res.status(code.BAD_REQUEST)
+                .json({msg: 'Accion rechazada', error: error})
+        }
+    }
 };

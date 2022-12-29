@@ -8,6 +8,7 @@ const router = Router();
 
 router
     .route('/')
+    .get(postulantController.get)
     .post([
         check('email', 'El email es requerido').notEmpty(),
         check('email', 'El email no es valido').isEmail(),
@@ -18,5 +19,9 @@ router
         check('email').custom(helpers.emailExist),
         middlewares.validateInputs
     ], postulantController.create)
+
+router
+    .route('/:id')
+    .get(postulantController.getOne)
 
 module.exports = router;

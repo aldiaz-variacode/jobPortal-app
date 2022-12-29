@@ -8,6 +8,7 @@ const router = Router();
 
 router
     .route('/')
+    .get(recruiterController.get)
     .post([
         check('email', 'El email es requerido').notEmpty(),
         check('email', 'El email no es valido').isEmail(),
@@ -17,5 +18,9 @@ router
         check('email').custom(helpers.emailExist),
         middlewares.validateInputs
     ], recruiterController.create)
+
+router
+    .route('/:id')
+    .get(recruiterController.getOne)
 
 module.exports = router;
