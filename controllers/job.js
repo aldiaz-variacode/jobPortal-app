@@ -1,6 +1,6 @@
 const { response, request } = require('express');
 const { StatusCodes: code } = require('http-status-codes');
-const recruiterModel = require('../models/recruiter')
+const jobModel = require('../models/job')
 const helpers = require('../helpers')
 const query = require('../services/query')
 
@@ -8,9 +8,9 @@ const query = require('../services/query')
 module.exports = {
     create: async (req = request, res = response) => {
         try {
-            const { name, lastname, email, roleid } = req.body;
-            const recruiter = new recruiterModel(helpers.idGenerator(), name, lastname, email, roleid)
-            const result = await query.insert('recruiter', [recruiter.id, recruiter.name, recruiter.lastname, recruiter.email, recruiter.roleid])
+            const { description, position, location, recruiterId, jobTypeId } = req.body;
+            const job = new jobModel(helpers.idGenerator(), description, position, location, recruiterId, jobTypeId)
+            const result = await query.insert('job', [job.id, job.description, job.position, job.location, job.recruiterId, job.jobTypeId])
             console.log('Acción realizada con éxito, registro agregado');
             res.status(code.CREATED)
                 .json({msg: 'Acción realizada con éxito, registro agregado', registro: result[0]});
