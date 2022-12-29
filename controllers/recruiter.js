@@ -29,7 +29,8 @@ module.exports = {
     },
     get: async (req = request, res = response) => {
         try {
-            const result = await query.get('recruiter');
+            const queryString = `SELECT * FROM recruiter;`
+            const result = await query.get(queryString);
             return res.status(code.OK)
                 .json({ msg: 'Accion exitosa', registros: result });
         } catch (error) {
@@ -41,7 +42,8 @@ module.exports = {
     getOne: async (req = request, res = response) => {
         try {
             const {id} = req.params;
-            const result = await query.getOneCondition('recruiter', `id = '${id}'`);
+            const queryString = `SELECT * FROM recruiter WHERE d = '${id};`
+            const result = await query.get(queryString);
             return res.status(code.OK)
                 .json({ msg: 'Accion exitosa', registros: result });
         } catch (error) {

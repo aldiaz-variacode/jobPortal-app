@@ -9,7 +9,8 @@ module.exports = {
             .json({ msg: 'No tengo nada que mostrar - post' });
     },
     get: async (req = request, res = response) => {
-        const result = await query.get('jobtype');
+        const queryString = `SELECT * FROM jobtype;`
+        const result = await query.get(queryString);
         return res.status(code.OK)
             .json({ msg: 'Accion exitosa', registros: result });
     },

@@ -10,7 +10,8 @@ module.exports = {
     },
     get: async (req = request, res = response) => {
         try {
-            const result = await query.get('role');
+            const queryString = `SELECT * FROM role;`
+            const result = await query.get(queryString);
             return res.status(code.OK)
                 .json({ msg: 'Accion exitosa', registros: result });
         } catch (error) {
