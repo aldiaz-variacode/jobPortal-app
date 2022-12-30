@@ -10,6 +10,7 @@ module.exports = {
         try {
             const { jobId, postulantId, experience } = req.body;
             const id = helpers.idGenerator();
+            console.log(req.files.curriculum, req.files.cvUrl)
             if (!req.files){
                 return res.status(code.BAD_REQUEST).json({msg: "No hay archivo para subir"})
             }
