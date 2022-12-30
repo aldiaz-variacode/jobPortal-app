@@ -14,7 +14,7 @@ router
         check('email', 'El email no es valido').isEmail(),
         check('name', 'El nombre es requerido').notEmpty(),
         check('lastname', 'El apellido es requerido').notEmpty(),
-        check('roleid', 'El rolId es requerido').notEmpty(),
+        check('roleId', 'El rolId es requerido').notEmpty(),
         check('phone', 'El telefono es requerido').notEmpty(),
         check('email').custom(helpers.emailExist),
         middlewares.validateInputs
