@@ -8,7 +8,7 @@ const query = require('../services/query')
 module.exports = {
     create: async (req = request, res = response) => {
         try {
-            const { jobId, postulantId, experience, cvurl } = req.body;
+            const { jobId, postulantId, experience, cvUrl } = req.body;
             if (!req.files){
                 return res.status(code.BAD_REQUEST).json({msg: "No hay archivo para subir"})
             }
@@ -19,13 +19,13 @@ module.exports = {
                     msg: nameCV.msg
                 })
             }
-            const postulation = new postulationModel(helpers.idGenerator(), jobId, postulantId, experience, cvurl)
+            const postulation = new postulationModel(helpers.idGenerator(), jobId, postulantId, experience, cvUrl)
             const dataForQuery = {
                 id: postulation.id,
                 jobId: postulation.jobId,
                 postulantId: postulation.postulantId,
                 experience: postulation.experience,
-                cvurl: postulation.cvurl
+                cvUrl: postulation.cvUrl
             }
             const result = await query.insert('postulation', dataForQuery);
             console.log('Acción realizada con éxito, registro agregado');

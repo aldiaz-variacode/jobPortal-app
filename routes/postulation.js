@@ -12,7 +12,7 @@ router
         check('jobId', 'El id del empleo es requerido').notEmpty(),
         check('postulantId', 'El id del postulante es requerido').notEmpty(),
         check('experience', 'La experiencia es requerida').notEmpty(),
-        check('cvurl', 'El cv es requerido').notEmpty(),
+        check('cvUrl', 'El cv es requerido').notEmpty(),
         middlewares.validateInputs
     ], postulationController.create)
     
