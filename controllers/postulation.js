@@ -9,6 +9,7 @@ module.exports = {
     create: async (req = request, res = response) => {
         try {
             const { jobId, postulantId, experience, cvUrl } = req.body;
+            const id = helpers.idGenerator();
             if (!req.files){
                 return res.status(code.BAD_REQUEST).json({msg: "No hay archivo para subir"})
             }
@@ -19,7 +20,7 @@ module.exports = {
                     msg: nameCV.msg
                 })
             }
-            const postulation = new postulationModel(helpers.idGenerator(), jobId, postulantId, experience, cvUrl)
+            const postulation = new postulationModel(id, jobId, postulantId, experience, cvUrl)
             const dataForQuery = {
                 id: postulation.id,
                 jobId: postulation.jobId,
