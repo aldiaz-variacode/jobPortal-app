@@ -1,7 +1,7 @@
 const { response, request } = require('express');
 const { StatusCodes: code } = require('http-status-codes');
 const helpers = require('../helpers');
-const query = require('../services/query');
+const query = require('../services/querySql');
 const Recruiter = require('../models/recruiter');
 
 
@@ -14,9 +14,8 @@ module.exports = {
                 name,
                 email,
             } = await helpers.googleVerify(accessToken);
-            const queryString = `SELECT * FROM recruiter WHERE email = '${email}'`;
+            const queryString = `SELECT r.id, r.name || ' ' || r.lastname as recruiter, r.email, role.type FROM recruiter as r INNER JOIN role ON role.id = r.roleid WHERE r.email = '${email}';`;
             let user = await query.get(queryString);
-            console.log(user, 'auth 19')
             if (!user[0]) {
                 // Si el usuario no existe, tengo que crearlo
                 const newUser = new Recruiter(helpers.idGenerator(), name.split(' ')[0], name.split(' ')[1], email, 'd96a2209', true);
@@ -28,7 +27,8 @@ module.exports = {
                     roleId: newUser.roleId,
                     google: newUser.google,
                 };
-                user = await query.insert('recruiter', data)
+                registerUser = await query.insert('recruiter', data);
+                user = await query.get(queryString);
             }
             // Generar el Jwt
             const token = await helpers.jwtGenerator(user.id);

@@ -1,4 +1,4 @@
-const poolService = require('../utils/pool');
+const poolService = require('../utils/connectToPostgres');
 
 module.exports = {
     get: async (query) => {

@@ -1,4 +1,4 @@
-const query = require('../services/query')
+const query = require('../services/querySql')
 
 module.exports = {
     emailExist: async (email = '') => {

@@ -2,7 +2,7 @@ const { response, request } = require('express');
 const { StatusCodes: code } = require('http-status-codes');
 const postulationModel = require('../models/postulation')
 const helpers = require('../helpers')
-const query = require('../services/query')
+const query = require('../services/querySql')
 
 
 module.exports = {

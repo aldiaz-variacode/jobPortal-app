@@ -1,6 +1,6 @@
 const { response, request } = require('express');
 const { StatusCodes: code } = require('http-status-codes');
-const query = require('../services/query')
+const query = require('../services/querySql')
 
 
 module.exports = {
