@@ -17,7 +17,7 @@ module.exports = {
                 email,
             } = await helpers.googleVerify(accessToken);
             const queryString = `SELECT * FROM recruiter WHERE email = '${email}'`;
-            let user = await query.get(queryString);
+            let user = await query.get(queryString)[0];
             console.log(user, 'user auth 21')
             if (!user) {
                 // Si el usuario no existe, tengo que crearlo
