@@ -18,9 +18,9 @@ module.exports = {
             index += 1
             return `$${index}`
         })
-        const query = `INSERT into ${table} (${Object.keys(data).join()}) values (${index.join()}) RETURNING ${returning};`;
+        const query = `INSERT INTO ${table} (${Object.keys(data).join()}) values (${index.join()}) RETURNING ${returning};`;
         const result = await poolService.connect(query, Object.values(data));
         console.log(result.rows, 'query 23');
         return result.rows
-    }
+    },
 };
