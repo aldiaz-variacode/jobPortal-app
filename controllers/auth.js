@@ -9,7 +9,7 @@ const Recruiter = require('../models/recruiter');
 module.exports = {
     googleSignIn: async (req = request, res = response) => {
         const { accessToken } = req.body;
-        // console.log(accessToken)
+        console.log(accessToken)
         // res.status(code.OK).json({accessToken})
         try {
             const {
