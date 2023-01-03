@@ -42,7 +42,7 @@ module.exports = {
     getOne: async (req = request, res = response) => {
         try {
             const {id} = req.params;
-            const queryString = `SELECT * FROM recruiter WHERE d = '${id};`
+            const queryString = `SELECT * FROM recruiter WHERE id = '${id};`
             const result = await query.get(queryString);
             return res.status(code.OK)
                 .json({ msg: 'Accion exitosa', registros: result });

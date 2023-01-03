@@ -2,11 +2,15 @@ const {gen: idGenerator} = require('./uuid');
 const {emailExist} = require('./dbValidator');
 const {encrypt} = require('./encrypt');
 const {validFileExtension} = require('./extensionValidator');
-const {uploader} = require('./uploader')
+const {uploader} = require('./uploader');
+const {verify: googleVerify} = require('./googleVerify');
+const {generar: jwtGenerator} = require('./jwtGenerator')
 module.exports = {
     idGenerator,
     emailExist,
     validFileExtension,
     encrypt,
-    uploader
+    uploader,
+    googleVerify,
+    jwtGenerator
 };
