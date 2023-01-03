@@ -6,7 +6,7 @@ const middlewares = require('../middlewares');
 const router = Router();
 
 router
-    .route('/login')
+    .route('/')
     .post([
         check('id_token', 'id_token es necesario').notEmpty(),
         middlewares.validateInputs
