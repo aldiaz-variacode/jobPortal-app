@@ -8,7 +8,7 @@ const router = Router();
 router
     .route('/')
     .post([
-        check('accessToken', 'id_token es necesario').notEmpty(),
+        check('accessToken', 'accessToken es necesario').notEmpty(),
         middlewares.validateInputs
     ], authController.googleSignIn)
 
