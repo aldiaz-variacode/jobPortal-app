@@ -1,6 +1,5 @@
 const { response, request } = require('express');
 const { StatusCodes: code } = require('http-status-codes');
-const applicantModel = require('../models/applicant');
 const helpers = require('../helpers');
 const query = require('../services/query');
 const Recruiter = require('../models/recruiter');
