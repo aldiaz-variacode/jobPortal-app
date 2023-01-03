@@ -9,8 +9,6 @@ const Recruiter = require('../models/recruiter');
 module.exports = {
     googleSignIn: async (req = request, res = response) => {
         const { accessToken } = req.body;
-        // console.log(accessToken)
-        // res.status(code.OK).json({accessToken})
         try {
             const {
                 name,
@@ -18,6 +16,7 @@ module.exports = {
             } = await helpers.googleVerify(accessToken);
             const queryString = `SELECT * FROM recruiter WHERE email = '${email}'`;
             let user = await query.get(queryString)[0];
+            console.log(user, 'auth 19')
             if (!user) {
                 // Si el usuario no existe, tengo que crearlo
                 const newUser = new Recruiter(helpers.idGenerator(), name.split(' ')[0], name.split(' ')[1], email, 'd96a2209', true);
@@ -31,12 +30,6 @@ module.exports = {
                 };
                 user = await query.insert('recruiter', data)
             }
-            // // Si el usuario en DB
-            // if (!usuario.estado) {
-            //     return res.status(code.UNAUTHORIZED).json({
-            //         msg: 'Hable con el administrador, usuario bloqueado',
-            //     });
-            // }
             // Generar el Jwt
             const token = await helpers.jwtGenerator(user.id);
             res.status(code.OK).json({

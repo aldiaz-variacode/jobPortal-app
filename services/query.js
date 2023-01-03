@@ -3,7 +3,7 @@ const poolService = require('../utils/pool');
 module.exports = {
     get: async (query) => {
         const result = await poolService.connect(query);
-        console.log(result.rows);
+        console.log(result.rows, 'query 6');
         return result.rows;
     },
     getOneDBvalidator: async ( table, condition, select = '*' ) => {
@@ -20,7 +20,7 @@ module.exports = {
         })
         const query = `INSERT into ${table} (${Object.keys(data).join()}) values (${index.join()}) RETURNING *;`;
         const result = await poolService.connect(query, Object.values(data));
-        console.log(result.rows);
+        console.log(result.rows, 'query 23');
         return result.rows
     }
 };
