@@ -14,7 +14,7 @@ module.exports = {
             .map(row => row.email);
     },
     insert: async ( table, data ) => {
-        console.log(data)
+        console.log(data, 'query 17')
         const index = Object.keys(data).map((key, index)=>{
             index += 1
             return `$${index}`
