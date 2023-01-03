@@ -27,7 +27,8 @@ module.exports = {
                     roleId: newUser.roleId,
                     google: newUser.google,
                 };
-                registerUser = await query.insert('recruiter', data);
+                returning = "id, name || ' ' || lastname as recruiter, email INNER JOIN role ON role.id = roleid"
+                registerUser = await query.insert('recruiter', data, returning);
                 user = await query.get(queryString);
             }
             // Generar el Jwt

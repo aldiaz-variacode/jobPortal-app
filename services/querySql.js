@@ -13,12 +13,12 @@ module.exports = {
         return result.rows
             .map(row => row.email);
     },
-    insert: async ( table, data ) => {
+    insert: async ( table, data, returning = '*' ) => {
         const index = Object.keys(data).map((key, index)=>{
             index += 1
             return `$${index}`
         })
-        const query = `INSERT into ${table} (${Object.keys(data).join()}) values (${index.join()}) RETURNING *;`;
+        const query = `INSERT into ${table} (${Object.keys(data).join()}) values (${index.join()}) RETURNING ${returning};`;
         const result = await poolService.connect(query, Object.values(data));
         console.log(result.rows, 'query 23');
         return result.rows
