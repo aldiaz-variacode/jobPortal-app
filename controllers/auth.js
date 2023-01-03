@@ -9,13 +9,13 @@ const Recruiter = require('../models/recruiter');
 
 module.exports = {
     googleSignIn: async (req = request, res = response) => {
-        const { id_token } = req.body;
+        const { accessToken } = req.body;
         try {
             const {
                 name,
                 picture,
                 email,
-            } = await helpers.googleVerify(id_token);
+            } = await helpers.googleVerify(accessToken);
             const queryString = `SELECT * FROM recruiter WHERE email = '${email}'`;
             let user = await query.get(queryString);
             if (!user) {
