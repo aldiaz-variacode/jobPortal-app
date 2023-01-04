@@ -1,6 +1,7 @@
 const { response, request } = require('express');
 const jwt = require('jsonwebtoken');
 const { StatusCodes:code } = require('http-status-codes');
+const query = require('../services/querySql')
 
 
 module.exports = {
