@@ -17,7 +17,7 @@ module.exports = {
             console.log('validarJwt 16', jwt.verify( token, process.env.SECRETORPRIVATEKEY))
             const { id } = jwt.verify( token, process.env.SECRETORPRIVATEKEY);
             //leer el user que corresponde al id
-            const queryString = `SELECT * FROM recruiter WHERE id = '${id};`
+            const queryString = `SELECT * FROM recruiter WHERE id = '${id}';`
             const user = await query.get(queryString);
 
             if ( !user[0] ) {
