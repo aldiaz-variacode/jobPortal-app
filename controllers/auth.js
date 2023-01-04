@@ -16,7 +16,7 @@ module.exports = {
             } = await helpers.googleVerify(accessToken);
             const queryString = `SELECT r.id, r.name || ' ' || r.lastname as recruiter, r.email, role.type FROM recruiter as r INNER JOIN role ON role.id = r.roleid WHERE r.email = '${email}';`;
             let [user] = await query.get(queryString);
-            console.log('auth 19',user);
+            // console.log('auth 19',user);
             if (!user) {
                 // Si el usuario no existe, tengo que crearlo
                 const newUser = new Recruiter(helpers.idGenerator(), name.split(' ')[0], name.split(' ')[1], email, 'd96a2209', true);
@@ -31,7 +31,7 @@ module.exports = {
                 registerUser = await query.insert('recruiter', data);
                 [user] = await query.get(queryString);
             }
-            console.log('auth 33', user)
+            // console.log('auth 33', user)
             // Generar el Jwt
             const token = await helpers.jwtGenerator(user.id);
             res.status(code.OK).json({

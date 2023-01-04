@@ -4,10 +4,8 @@ const query = require('../services/querySql')
 
 
 module.exports = {
-    get: async (req = request, res = response) => {
+    get: async ({user} = request, res = response) => {
         try {
-            console.log('renew 9', req.user);
-            const {user} = req.user
             return res.status(code.OK)
                 .json({user});
         } catch (error) {
