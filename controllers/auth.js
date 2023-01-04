@@ -30,6 +30,7 @@ module.exports = {
                 registerUser = await query.insert('recruiter', data);
                 user = await query.get(queryString);
             }
+            console.log('auth 33', user)
             // Generar el Jwt
             const token = await helpers.jwtGenerator(user.id);
             res.status(code.OK).json({
