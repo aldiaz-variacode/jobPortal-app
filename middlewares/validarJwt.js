@@ -18,9 +18,9 @@ module.exports = {
             const { id } = jwt.verify( token, process.env.SECRETORPRIVATEKEY);
             //leer el user que corresponde al id
             const queryString = `SELECT * FROM recruiter WHERE id = '${id}';`
-            const user = await query.get(queryString);
+            const [user] = await query.get(queryString);
 
-            if ( !user[0] ) {
+            if ( !user ) {
                 return res.status(code.UNAUTHORIZED).json({
                     msg: 'Token no valido - Usuario no existe.'
                 })
