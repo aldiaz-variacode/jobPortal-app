@@ -72,7 +72,7 @@ module.exports = {
     login: async ({body} = request, res = reponse) => {
         try {
             const email = body;
-            console.log(email)
+            console.log('controller', email)
             // const queryString = `SELECT * FROM postulant WHERE email = '${email}'`;
             // const result = await query.get(queryString)
             // return res.status(code.OK)

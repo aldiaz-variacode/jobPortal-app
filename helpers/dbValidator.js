@@ -10,8 +10,8 @@ module.exports = {
         }
     },
     isVerified: async (email = '') => {
-        console.log(email)
+        console.log('isVerified', email)
         const isVerified = await query.getOneDBvalidator("postulant", `email = '${email}'`);
-        console.log(isVerified)
+        console.log('response postgres', isVerified)
     }
 }
