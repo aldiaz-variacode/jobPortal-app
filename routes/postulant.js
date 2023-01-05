@@ -28,7 +28,7 @@ router
     .post([
         check('email', 'El email es requerido').notEmpty(),
         check('email', 'El email no es valido').isEmail(),
-        check('email').custom(middlewares.isVerified),
+        middlewares.isVerified,
     ], postulantController.login)
 
 module.exports = router;
