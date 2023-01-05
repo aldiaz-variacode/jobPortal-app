@@ -33,7 +33,7 @@ module.exports = {
             });
         }
         try {
-            const queryString = `SELECT * FROM postulant WHERE email = '${email}';`
+            const queryString = `SELECT p.id, p.name || ' ' || p.lastname as postulant, FROM postulant as p INNER JOIN role ON role.id = p.roleid WHERE email = '${email}';`
             const [isVerified] = await query.get(queryString);
             if (isVerified.verified === false) {
                 return res.status(code.BAD_REQUEST).json({

@@ -68,7 +68,6 @@ module.exports = {
     validatePostulantEmail: async (req = request, res = response, next) => {
         
         const {token} = req.params
-        console.log('validarJwt 10', token)
         if ( !token ) {
             return res.status(code.UNAUTHORIZED).json({
                 msg: 'No hay token en la peticion'
