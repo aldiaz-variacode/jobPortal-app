@@ -48,7 +48,7 @@ module.exports = {
             // console.log('validarJwt 16', jwt.verify( token, process.env.SECRETORPRIVATEKEY))
             const { id } = jwt.verify( token, process.env.SECRETORPRIVATEKEY);
             //leer el user que corresponde al id
-            const queryString = `SELECT p.id, p.name || ' ' || p.lastname as postulant, p.email, p.verified, role.type FROM postulant as p INNER JOIN role ON role.id = r.roleid WHERE r.id = '${id}';`;
+            const queryString = `SELECT p.id, p.name || ' ' || p.lastname as postulant, p.email, p.verified, role.type FROM postulant as p INNER JOIN role ON role.id = p.roleid WHERE p.id = '${id}';`;
             const [postulant] = await query.get(queryString);
 
             if ( !postulant ) {
