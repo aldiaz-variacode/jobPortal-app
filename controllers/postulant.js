@@ -69,14 +69,14 @@ module.exports = {
                 .json({msg: 'Accion rechazada', error: error})
         }
     },
-    login: async ({body} = request, res = reponse) => {
+    login: async (req = request, res = response) => {
         try {
-            const email = body;
-            console.log('controller', email)
+            // const email = body;
             // const queryString = `SELECT * FROM postulant WHERE email = '${email}'`;
             // const result = await query.get(queryString)
-            // return res.status(code.OK)
-            //     .json({ msg: 'Accion exitosa', registros: result });
+            const {user} =  req
+            return res.status(code.OK)
+                .json({ msg: 'Accion exitosa', registros: result });
         } catch (error) {
             console.log(error)
             res.status(code.BAD_REQUEST)

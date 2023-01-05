@@ -1,7 +1,6 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
 const recruiterController = require('../controllers/recruiter');
-const helpers = require('../helpers')
 const middlewares = require('../middlewares');
 
 const router = Router();
@@ -15,7 +14,7 @@ router
         check('name', 'El nombre es requerido').notEmpty(),
         check('lastname', 'El apellido es requerido').notEmpty(),
         check('roleId', 'El rolid es requerido').notEmpty(),
-        check('email').custom(helpers.emailExist),
+        check('email').custom(middlewares.emailExist),
         middlewares.validateInputs
     ], recruiterController.create)
 
