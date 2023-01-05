@@ -17,12 +17,12 @@ module.exports = {
         const {email} = req.body
         const queryString = `SELECT * FROM postulant WHERE email = '${email}';`
         const [isVerified] = await query.get(queryString);
-        console.log(isVerified)
         if (isVerified.verified === false) {
             return res.status(code.BAD_REQUEST).json({
                 msg: `El email ${email}, no está verificado.`
             })
         }
+        console.log(isVerified)
         req.user = isVerified
         next()
     }
