@@ -19,7 +19,7 @@ module.exports = {
             const today = new Date(Date.now())
             const result = await query.update('postulant', `verified = true, verifiedAt = ${today.toISOString()}`, `id = ${user.id}`)
             return res.status(code.OK)
-                .json({user});
+                .json({result});
         } catch (error) {
             console.log(error)
             res.status(code.BAD_REQUEST)
