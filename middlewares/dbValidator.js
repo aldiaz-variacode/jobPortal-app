@@ -20,6 +20,7 @@ module.exports = {
                 `El email ${email}, no está verificado.`
             )
         }
+        console.log('dbValidator 23', isVerified)
         req.user = isVerified
         next()
     }
