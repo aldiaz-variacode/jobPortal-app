@@ -23,7 +23,7 @@ module.exports = {
         console.log(result.rows, 'querySql 23');
         return result.rows
     },
-    update: async (table, data, ) => {
+    update: async (table, data, condition) => {
         const query = `UPDATE ${table} SET ${data} WHERE ${condition} RETURNING *;`
         const result = await poolService.connect(query);
         console.log(result.rows, 'querySql 29');
