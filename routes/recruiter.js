@@ -23,4 +23,11 @@ router
     .route('/:id')
     .get(recruiterController.getOne)
 
+router
+    .route('/googleAuth')
+    .post([
+        check('accessToken', 'accessToken es necesario').notEmpty(),
+        middlewares.validateInputs
+    ], recruiterController.googleSignIn)
+
 module.exports = router;

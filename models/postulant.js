@@ -6,6 +6,8 @@ class Postulant {
         this.email = email;
         this.phone = phone;
         this.roleId = roleId;
+        this.verified = false;
+        this.verifiedAt = 'none';
     }
 }
 

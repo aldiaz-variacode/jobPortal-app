@@ -1,7 +1,8 @@
 const { validate: validateInputs } = require('./validateInputs');
-const { validate: validateJwt } = require('./validateJwt');
+const { validateRecruiter, validatePostulant } = require('./validateJwt');
 
 module.exports = {
     validateInputs,
-    validateJwt
+    validateRecruiter,
+    validatePostulant
 };

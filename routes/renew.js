@@ -7,8 +7,13 @@ const router = Router();
 router
     .route('/')
     .get([
-        middlewares.validateJwt
-    ], renewController.get)
+        middlewares.validateRecruiter
+    ], renewController.getRecruiter)
 
+router
+    .route('/verified/:id')
+    .get([
+        middlewares.validatePostulant
+    ], renewController.getPostulant)
 
 module.exports = router;

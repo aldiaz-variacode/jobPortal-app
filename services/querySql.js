@@ -3,7 +3,7 @@ const poolService = require('../utils/connectToPostgres');
 module.exports = {
     get: async (query) => {
         const result = await poolService.connect(query);
-        console.log(result.rows, 'query 6');
+        console.log(result.rows, 'querySql 6');
         return result.rows;
     },
     getOneDBvalidator: async ( table, condition, select = '*' ) => {
@@ -20,7 +20,13 @@ module.exports = {
         })
         const query = `INSERT INTO ${table} (${Object.keys(data).join()}) values (${index.join()}) RETURNING ${returning};`;
         const result = await poolService.connect(query, Object.values(data));
-        console.log(result.rows, 'query 23');
+        console.log(result.rows, 'querySql 23');
         return result.rows
     },
+    update: async (table, data, ) => {
+        const query = `UPDATE ${table} SET ${data} WHERE ${condition};`
+        const result = await poolService.connect(query);
+        console.log(result.rows, 'querySql 29');
+        return result.rows
+    }
 };
