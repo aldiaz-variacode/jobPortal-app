@@ -17,7 +17,7 @@ module.exports = {
     getPostulant: async ({user} = request, res = response) => {
         try {
             const today = new Date(Date.now())
-            const result = await query.update('postulant', `verified = true, verifiedAt = "${today.toISOString()}"`, `id = ${user.id}`)
+            const result = await query.update('postulant', `verified = true, verifiedAt = "${today.toISOString()}"`, `id = '${user.id}'`)
             return res.status(code.OK)
                 .json({result});
         } catch (error) {
