@@ -75,6 +75,7 @@ module.exports = {
             // const queryString = `SELECT * FROM postulant WHERE email = '${email}'`;
             // const result = await query.get(queryString)
             const {user} =  req
+            console.log(user)
             return res.status(code.OK)
                 // .json({ msg: 'Accion exitosa', registros: result });
         } catch (error) {
