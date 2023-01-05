@@ -1,7 +1,6 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
 const postulantController = require('../controllers/postulant');
-const helpers = require('../helpers')
 const middlewares = require('../middlewares');
 
 const router = Router();
@@ -16,7 +15,7 @@ router
         check('lastname', 'El apellido es requerido').notEmpty(),
         check('roleId', 'El rolId es requerido').notEmpty(),
         check('phone', 'El telefono es requerido').notEmpty(),
-        check('email').custom(helpers.emailExist),
+        check('email').custom(middlewares.emailExist),
         middlewares.validateInputs
     ], postulantController.create)
 
@@ -29,7 +28,7 @@ router
     .post([
         check('email', 'El email es requerido').notEmpty(),
         check('email', 'El email no es valido').isEmail(),
-        check('email').custom(helpers.isVerified),
+        check('email').custom(middlewares.isVerified),
     ], postulantController.login)
 
 module.exports = router;

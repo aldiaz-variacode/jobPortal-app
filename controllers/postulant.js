@@ -69,13 +69,12 @@ module.exports = {
                 .json({msg: 'Accion rechazada', error: error})
         }
     },
-    login: async (req = request, res = response) => {
+    login: async ({user} = request, res = response) => {
         try {
             // const email = body;
             // const queryString = `SELECT * FROM postulant WHERE email = '${email}'`;
             // const result = await query.get(queryString)
-            const {user} =  req
-            console.log(req)
+            console.log(user)
             return res.status(code.OK)
                 // .json({ msg: 'Accion exitosa', registros: result });
         } catch (error) {
