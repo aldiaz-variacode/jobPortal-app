@@ -71,12 +71,8 @@ module.exports = {
     },
     login: async ({user} = request, res = response) => {
         try {
-            // const email = body;
-            // const queryString = `SELECT * FROM postulant WHERE email = '${email}'`;
-            // const result = await query.get(queryString)
-            console.log('controller login', user)
             return res.status(code.OK)
-                // .json({ msg: 'Accion exitosa', registros: result });
+                .json({ msg: 'Accion exitosa', registros: user });
         } catch (error) {
             console.log(error)
             res.status(code.BAD_REQUEST)

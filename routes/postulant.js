@@ -15,7 +15,7 @@ router
         check('lastname', 'El apellido es requerido').notEmpty(),
         check('roleId', 'El rolId es requerido').notEmpty(),
         check('phone', 'El telefono es requerido').notEmpty(),
-        check('email').custom(middlewares.emailExist),
+        middlewares.emailExist,
         middlewares.validateInputs
     ], postulantController.create)
 

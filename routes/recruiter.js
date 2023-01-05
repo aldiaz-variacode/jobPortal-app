@@ -14,7 +14,7 @@ router
         check('name', 'El nombre es requerido').notEmpty(),
         check('lastname', 'El apellido es requerido').notEmpty(),
         check('roleId', 'El rolid es requerido').notEmpty(),
-        check('email').custom(middlewares.emailExist),
+        middlewares.emailExist,
         middlewares.validateInputs
     ], recruiterController.create)
 
