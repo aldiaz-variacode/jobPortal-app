@@ -21,24 +21,19 @@ module.exports = {
                 verified: postulant.verified
             }
             const token = await helpers.jwtGenerator(postulant.id);
-            console.log({
-                file: 'postulant 24',
-                token,
-                id: postulant.id
-            })
-            // const dataForEmail = {
-            //     mailService: 'gmail',
-            //     mailTo: postulant.email,
-            //     text: `Hola ${postulant.name} gracias por querer ser un Variacoder`,
-            //     html: `
-            //     <div id="emailTemplate">
-            //     <p>Para poder continuar debes confirmar tu cuenta, ingresando al siguiente enlace:</p>
-            //     <a href="https://vc-linkedin-production.up.railway.app/renew/verified/${token}">Verificar Cuenta</a>
-            //     </div>
-            //     `
-            // }
-            // const mail = new Mailer({...dataForEmail});
-            // mail.sendMail()
+            const dataForEmail = {
+                mailService: 'gmail',
+                mailTo: postulant.email,
+                text: `Hola ${postulant.name} gracias por querer ser un Variacoder`,
+                html: `
+                <div id="emailTemplate">
+                <p>Para poder continuar debes confirmar tu cuenta, ingresando al siguiente enlace:</p>
+                <a href="https://vc-linkedin-production.up.railway.app/renew/verified/${token}">Verificar Cuenta</a>
+                </div>
+                `
+            }
+            const mail = new Mailer({...dataForEmail});
+            mail.sendMail()
             const result = await query.insert('postulant', dataForQuery);
             console.log('Acción realizada con éxito, registro agregado');
             res.status(code.CREATED)
