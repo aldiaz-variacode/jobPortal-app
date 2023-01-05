@@ -11,7 +11,8 @@ module.exports = {
     },
     isVerified: async (email = '') => {
         console.log('isVerified', email)
-        const isVerified = await query.getOneDBvalidator("postulant", `email = '${email}'`);
+        const queryString = `SELECT * FROM postulant WHERE email = '${email}';`
+        const isVerified = await query.get(queryString);
         console.log('response postgres', isVerified)
     }
 }
