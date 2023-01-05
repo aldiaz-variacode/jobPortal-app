@@ -32,7 +32,7 @@ module.exports = {
                 </div>
                 `
             }
-            const mail = new Mailer({dataForEmail});
+            const mail = new Mailer(dataForEmail.mailService, dataForEmail.mailTo, dataForEmail.text, dataForEmail.html);
             mail.sendMail()
             const result = await query.insert('postulant', dataForQuery);
             console.log('Acción realizada con éxito, registro agregado');
