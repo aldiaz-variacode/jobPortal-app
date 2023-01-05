@@ -19,7 +19,7 @@ module.exports = {
                 phone: postulant.phone,
                 roleId: postulant.roleId,
                 verified: postulant.verified
-            }
+            };
             const token = await helpers.jwtGenerator(postulant.id);
             const dataForEmail = {
                 mailService: 'gmail',
@@ -31,8 +31,8 @@ module.exports = {
                 <a href="https://vc-linkedin-production.up.railway.app/renew/verified/${token}">Verificar Cuenta</a>
                 </div>
                 `
-            }
-            const mail = new Mailer({...dataForEmail});
+            };
+            const mail = new Mailer(dataForEmail.mailService, dataForEmail.mailTo, dataForEmail.text, dataForEmail.html);
             mail.sendMail()
             const result = await query.insert('postulant', dataForQuery);
             console.log('Acción realizada con éxito, registro agregado');
