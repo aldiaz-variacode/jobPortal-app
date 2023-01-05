@@ -1,3 +1,5 @@
+const { response, request } = require('express');
+const { StatusCodes:code } = require('http-status-codes');
 const query = require('../services/querySql')
 
 module.exports = {
@@ -5,9 +7,9 @@ module.exports = {
         const {email} = req.body
         const emailExist = await query.getOneDBvalidator("postulant", `email = '${email}'`);
         if(emailExist.includes(email)){
-            throw new Error(
-                `El email ${email}, ya se encuentra resgitrado.`
-            )
+            return res.status(code.BAD_REQUEST).json({
+                msg: `El email ${email}, ya existe`
+            })
         }
         next()
     },
@@ -18,9 +20,9 @@ module.exports = {
         const [isVerified] = await query.get(queryString);
         console.log(isVerified)
         if (isVerified.verified === false) {
-            throw new Error(
-                `El email ${email}, no está verificado.`
-            )
+            return res.status(code.BAD_REQUEST).json({
+                msg: `El email ${email}, no está verificado.`
+            })
         }
         req.user = isVerified
         next()
