@@ -28,7 +28,7 @@ module.exports = {
                 html: `
                 <div id="emailTemplate">
                 <p>Para poder continuar debes confirmar tu cuenta, ingresando al siguiente enlace:</p>
-                <a href="https://vc-linkedin-production.up.railway.app/renew/verified/${token}">Verificar Cuenta</a>
+                <a href="https://vc-linkedin-production.up.railway.app/postulant/verified/${token}">Verificar Cuenta</a>
                 </div>
                 `
             };
@@ -63,6 +63,18 @@ module.exports = {
             const result = await query.get(queryString);
             return res.status(code.OK)
                 .json({ msg: 'Accion exitosa', registros: result });
+        } catch (error) {
+            console.log(error)
+            res.status(code.BAD_REQUEST)
+                .json({msg: 'Accion rechazada', error: error})
+        }
+    },
+    confirmation: async ({user} = request, res = response) => {
+        try {
+            const today = new Date(Date.now())
+            const result = await query.update('postulant', `verified = true, verifiedAt = '${today.toISOString()}'`, `id = '${user.id}'`)
+            return res.status(code.OK)
+                .json({result});
         } catch (error) {
             console.log(error)
             res.status(code.BAD_REQUEST)

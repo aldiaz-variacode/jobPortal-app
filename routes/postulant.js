@@ -24,6 +24,12 @@ router
     .get(postulantController.getOne)
 
 router
+    .route('/verified/:token')
+    .get([
+        middlewares.validatePostulantEmail
+    ], postulantController.confirmation)
+
+router
     .route('/login')
     .post([
         check('email', 'El email es requerido').notEmpty(),

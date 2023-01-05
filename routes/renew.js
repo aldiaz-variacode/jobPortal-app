@@ -5,13 +5,12 @@ const middlewares = require('../middlewares');
 const router = Router();
 
 router
-    .route('/')
+    .route('/recruiter')
     .get([
         middlewares.validateRecruiter
     ], renewController.getRecruiter)
-
 router
-    .route('/verified/:token')
+    .route('/postulant')
     .get([
         middlewares.validatePostulant
     ], renewController.getPostulant)
