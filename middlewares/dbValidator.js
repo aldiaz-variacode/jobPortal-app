@@ -15,7 +15,6 @@ module.exports = {
     },
     isVerified: async (req = request, res = response, next) => {
         const {email} = req.body
-        console.log(email)
         const queryString = `SELECT * FROM postulant WHERE email = '${email}';`
         const [isVerified] = await query.get(queryString);
         console.log(isVerified)
