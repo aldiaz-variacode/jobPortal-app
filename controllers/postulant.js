@@ -83,8 +83,9 @@ module.exports = {
     },
     login: async ({user} = request, res = response) => {
         try {
+            const token = helpers.jwtGenerator(user.id);
             return res.status(code.OK)
-                .json({ msg: 'Accion exitosa', registros: user });
+                .json({ msg: 'Accion exitosa', user, token });
         } catch (error) {
             console.log(error)
             res.status(code.BAD_REQUEST)

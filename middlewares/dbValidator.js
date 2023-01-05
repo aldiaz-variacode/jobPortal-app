@@ -33,7 +33,7 @@ module.exports = {
             });
         }
         try {
-            const queryString = `SELECT p.id, p.name || ' ' || p.lastname as postulant, p.email, p.phone, p.verified, role.type FROM postulant as p INNER JOIN role ON role.id = p.roleid WHERE p.email = '${email}';`
+            const queryString = `SELECT p.id, p.name|| ' ' ||p.lastname as postulant, p.email, p.phone, p.verified, role.type FROM postulant as p INNER JOIN role ON role.id = p.roleid WHERE p.email = '${email}';`
             const [isVerified] = await query.get(queryString);
             if (isVerified.verified === false) {
                 return res.status(code.BAD_REQUEST).json({

@@ -53,7 +53,7 @@ module.exports = {
     getOne: async (req = request, res = response) => {
         try {
             const {id} = req.params;
-            const queryString = `SELECT * FROM postulation WHERE d = '${id};`
+            const queryString = `SELECT * FROM postulation WHERE id = '${id}';`
             const result = await query.get(queryString);
             return res.status(code.OK)
                 .json({ msg: 'Accion exitosa', registros: result });
@@ -62,5 +62,5 @@ module.exports = {
             res.status(code.BAD_REQUEST)
                 .json({msg: 'Accion rechazada', error: error})
         }
-    }
+    },
 };

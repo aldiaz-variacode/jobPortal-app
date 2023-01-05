@@ -52,5 +52,18 @@ module.exports = {
             res.status(code.BAD_REQUEST)
                 .json({msg: 'Accion rechazada', error: error})
         }
+    },
+    getByRecruiterId: async (req = request, res = response) => {
+        try {
+            const {recruiterId} = req.params;
+            const queryString = `SELECT * FROM postulation WHERE recruiterid = '${recruiterId}';`
+            const result = await query.get(queryString);
+            return res.status(code.OK)
+                .json({ msg: 'Accion exitosa', registros: result });
+        } catch (error) {
+            console.log(error)
+            res.status(code.BAD_REQUEST)
+                .json({msg: 'Accion rechazada', error: error})
+        }
     }
 };
