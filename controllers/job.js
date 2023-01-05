@@ -43,7 +43,7 @@ module.exports = {
     getOne: async (req = request, res = response) => {
         try {
             const {id} = req.params;
-            const queryString = `SELECT * FROM job WHERE d = '${id};`
+            const queryString = `SELECT * FROM job WHERE id = '${id}';`
             const result = await query.get(queryString);
             return res.status(code.OK)
                 .json({ msg: 'Accion exitosa', registros: result });
@@ -56,7 +56,7 @@ module.exports = {
     getByRecruiterId: async (req = request, res = response) => {
         try {
             const {recruiterId} = req.params;
-            const queryString = `SELECT * FROM postulation WHERE recruiterid = '${recruiterId}';`
+            const queryString = `SELECT * FROM job WHERE recruiterid = '${recruiterId}';`
             const result = await query.get(queryString);
             return res.status(code.OK)
                 .json({ msg: 'Accion exitosa', registros: result });
