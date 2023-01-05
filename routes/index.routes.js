@@ -7,7 +7,6 @@ const postulantRoutes = require('./postulant');
 const postulationRoutes = require('./postulation');
 const roleRoutes = require('./role');
 const jobTypeRoutes = require('./jobType');
-const authRoutes = require('./auth');
 const renewRoutes = require('./renew');
 const router = Router();
 
@@ -18,7 +17,6 @@ router.use('/postulant', postulantRoutes);
 router.use('/postulation', postulationRoutes);
 router.use('/role', roleRoutes);
 router.use('/jobType', jobTypeRoutes);
-router.use('/login', authRoutes);
 router.use('/renew', renewRoutes);
 
 
