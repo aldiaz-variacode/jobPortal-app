@@ -15,12 +15,12 @@ module.exports = {
         const {email} = req.body
         const queryString = `SELECT * FROM postulant WHERE email = '${email}';`
         const [isVerified] = await query.get(queryString);
+        console.log('dbValidator 23', isVerified)
         if (isVerified.verified === false) {
             throw new Error(
                 `El email ${email}, no está verificado.`
             )
         }
-        console.log('dbValidator 23', isVerified)
         req.user = isVerified
         next()
     }
