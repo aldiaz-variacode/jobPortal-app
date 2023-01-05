@@ -59,10 +59,24 @@ module.exports = {
     getOne: async (req = request, res = response) => {
         try {
             const {id} = req.params;
-            const queryString = `SELECT * FROM postulant WHERE id = '${id};`
+            const queryString = `SELECT * FROM postulant WHERE id = '${id}';`
             const result = await query.get(queryString);
             return res.status(code.OK)
                 .json({ msg: 'Accion exitosa', registros: result });
+        } catch (error) {
+            console.log(error)
+            res.status(code.BAD_REQUEST)
+                .json({msg: 'Accion rechazada', error: error})
+        }
+    },
+    login: async ({body} = request, res = reponse) => {
+        try {
+            const email = body;
+            console.log(email)
+            // const queryString = `SELECT * FROM postulant WHERE email = '${email}'`;
+            // const result = await query.get(queryString)
+            // return res.status(code.OK)
+            //     .json({ msg: 'Accion exitosa', registros: result });
         } catch (error) {
             console.log(error)
             res.status(code.BAD_REQUEST)
