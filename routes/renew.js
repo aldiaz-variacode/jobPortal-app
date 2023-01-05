@@ -11,7 +11,7 @@ router
     ], renewController.getRecruiter)
 
 router
-    .route('/verified/:id')
+    .route('/verified/:token')
     .get([
         middlewares.validatePostulant
     ], renewController.getPostulant)
