@@ -20,7 +20,7 @@ module.exports = {
                 roleId: postulant.roleId,
                 verified: postulant.verified
             }
-            const token = helpers.jwtGenerator(postulant.id);
+            const token = await helpers.jwtGenerator(postulant.id);
             console.log({
                 file: 'postulant 24',
                 token,
