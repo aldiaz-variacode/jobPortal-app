@@ -10,6 +10,7 @@ module.exports = {
         }
     },
     isVerified: async (email = '') => {
+        console.log(email)
         const isVerified = await query.getOneDBvalidator("postulant", `email = '${email}'`);
         console.log(isVerified)
     }
