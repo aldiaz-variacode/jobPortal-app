@@ -53,10 +53,9 @@ module.exports = {
                 .json({msg: 'Accion rechazada', error: error})
         }
     },
-    getByRecruiterId: async (req = request, res = response) => {
+    getByRecruiterId: async ({user} = request, res = response) => {
         try {
-            const {recruiterId} = req.params;
-            const queryString = `SELECT * FROM job WHERE recruiterid = '${recruiterId}';`
+            const queryString = `SELECT * FROM job WHERE recruiterid = '${user.recruiterId}';`
             const result = await query.get(queryString);
             return res.status(code.OK)
                 .json({ msg: 'Accion exitosa', registros: result });
