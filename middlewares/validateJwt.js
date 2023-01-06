@@ -43,9 +43,11 @@ module.exports = {
                 msg: 'No hay token en la peticion'
             });
         };
+        console.log(token);
         try {
             // console.log('validarJwt 16', jwt.verify( token, process.env.SECRETORPRIVATEKEY))
             const { id } = jwt.verify( token, process.env.SECRETORPRIVATEKEY);
+            console.log(id);
             //leer el user que corresponde al id
             const queryString = `SELECT p.id, p.name || ' ' || p.lastname as postulant, p.email, p.verified, role.type FROM postulant as p INNER JOIN role ON role.id = p.roleid WHERE p.id = '${id}';`;
             const [postulant] = await query.get(queryString);
@@ -73,12 +75,10 @@ module.exports = {
                 msg: 'No hay token en la peticion'
             });
         };
-        console.log(token)
         try {
             // console.log('validarJwt 16', jwt.verify( token, process.env.SECRETORPRIVATEKEY))
             const { id } = jwt.verify( token, process.env.SECRETORPRIVATEKEY);
             //leer el user que corresponde al id
-            console.log(id)
             const queryString = `SELECT p.id, p.name || ' ' || p.lastname as postulant, p.email, p.verified, role.type FROM postulant as p INNER JOIN role ON role.id = p.roleid WHERE p.id = '${id}';`;
             const [postulant] = await query.get(queryString);
 
