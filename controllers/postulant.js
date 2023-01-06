@@ -83,9 +83,7 @@ module.exports = {
     },
     login: async ({user} = request, res = response) => {
         try {
-            console.log(user.id)
-            const token = helpers.jwtGenerator(user.id);
-            console.log(token)
+            const token = await helpers.jwtGenerator(user.id);
             return res.status(code.OK)
                 .json({ msg: 'Accion exitosa', user, token });
         } catch (error) {
