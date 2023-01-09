@@ -58,7 +58,7 @@ module.exports = {
     },
     getByRecruiterId: async ({user} = request, res = response) => {
         try {
-            const queryString = `SELECT * FROM job WHERE recruiterid = '${user.id}';`
+            const queryString = `SELECT job.id, job.description, job.position, job.location, r.name || ' ' || r.lastname as recruiter, jt.type as modality, jat.type as accessType FROM job INNER JOIN recruiter as r ON job.recruiterid = r.id INNER JOIN jobtype as jt ON job.jobtypeid = jt.id INNER JOIN accesstype as jat ON job.accesstypeid = jat.id WHERE recruiterid = '${user.id}';`
             const result = await query.get(queryString);
             return res.status(code.OK)
                 .json({ msg: 'Accion exitosa', registros: result });
