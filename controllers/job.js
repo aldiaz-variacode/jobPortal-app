@@ -8,15 +8,18 @@ const query = require('../services/querySql')
 module.exports = {
     create: async (req = request, res = response) => {
         try {
-            const { description, position, location, recruiterId, jobTypeId } = req.body;
-            const job = new jobModel(helpers.idGenerator(), description, position, location, recruiterId, jobTypeId)
+            const { description, position, location, recruiterId, jobTypeId, accessTypeId } = req.body;
+            const today = new Date(Date.now())
+            const job = new jobModel(helpers.idGenerator(), description, position, location, recruiterId, jobTypeId, accessTypeId, today.toISOString())
             const dataForQuery = {
                 id: job.id,
                 description: job.description,
                 position: job.position,
                 location: job.location,
                 recruiterId: job.recruiterId,
-                jobTypeId: job.jobTypeId
+                jobTypeId: job.jobTypeId,
+                accessTypeId: job.accessTypeId,
+                createdAt: job.createdAt
             }
             const result = await query.insert('job', dataForQuery)
             console.log('Acción realizada con éxito, registro agregado');

@@ -1,12 +1,12 @@
 const { Router } = require('express');
-const jobTypeController = require('../controllers/jobType');
+const accessTypeController = require('../controllers/accessType');
 
 
 const router = Router();
 
 router
     .route('/')
-    .get(jobTypeController.get)
+    .get(accessTypeController.get)
 
 
 module.exports = router;
