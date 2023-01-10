@@ -36,7 +36,7 @@ module.exports = {
             const queryString = `SELECT job.id, job.description, job.position, job.location, r.name || ' ' || r.lastname as recruiter, jt.type as modality, jat.type as accessType, job.createdat FROM job INNER JOIN recruiter as r ON job.recruiterid = r.id INNER JOIN jobtype as jt ON job.jobtypeid = jt.id INNER JOIN accesstype as jat ON job.accesstypeid = jat.id;`
             const result = await query.get(queryString);
             const resultFiltered = result.sort((a,b) => {
-                b.createdAt.getTime() - a.createdAt.getTime()
+                b.createdAt - a.createdAt
             })
             return res.status(code.OK)
                 .json({ msg: 'Accion exitosa', registros: result, filter: resultFiltered});
