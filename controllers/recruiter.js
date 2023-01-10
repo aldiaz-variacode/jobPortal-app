@@ -64,7 +64,7 @@ module.exports = {
             // console.log('auth 19',user);
             if (!user) {
                 // Si el usuario no existe, tengo que crearlo
-                const newUser = new Recruiter(helpers.idGenerator(), name.split(' ')[0], name.split(' ')[1], email, 'd96a2209', true);
+                const newUser = new recruiterModel(helpers.idGenerator(), name.split(' ')[0], name.split(' ')[1], email, 'd96a2209', true);
                 const data = {
                     id: newUser.id,
                     name: newUser.name,

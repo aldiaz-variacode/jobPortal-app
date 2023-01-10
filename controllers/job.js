@@ -9,7 +9,7 @@ module.exports = {
     create: async (req = request, res = response) => {
         try {
             const { description, position, location, recruiterId, jobTypeId, accessTypeId } = req.body;
-            const today = new Date(Date.now())
+            const today = new Date()
             const job = new jobModel(helpers.idGenerator(), description, position, location, recruiterId, jobTypeId, accessTypeId, today)
             const dataForQuery = {
                 id: job.id,
