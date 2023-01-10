@@ -21,6 +21,9 @@ router
     .route('/:id')
     .get(jobController.getOne)
 router
+    .route('/most-recent')
+    .get(jobController.getMostRecent)
+router
     .route('/recruiter/:recruiterId')
     .get([
         middlewares.validateRecruiter
