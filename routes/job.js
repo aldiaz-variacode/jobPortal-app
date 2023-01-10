@@ -18,12 +18,12 @@ router
     ], jobController.create)
 
 router
-    .route('/:id')
-    .get(jobController.getOne)
-
-router
     .route('/mostrecent')
     .get(jobController.getMostRecent)
+
+router
+    .route('/:id')
+    .get(jobController.getOne)
 
 router
     .route('/recruiter/:recruiterId')

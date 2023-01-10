@@ -4,7 +4,6 @@ const {validFileExtension} = require('./extensionValidator');
 const {uploader} = require('./uploader');
 const {verify: googleVerify} = require('./googleVerify');
 const {generar: jwtGenerator} = require('./jwtGenerator');
-const {subtractDate} = require('./time')
 module.exports = {
     idGenerator,
     validFileExtension,
@@ -12,5 +11,4 @@ module.exports = {
     uploader,
     googleVerify,
     jwtGenerator,
-    subtractDate
 };
