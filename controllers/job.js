@@ -37,7 +37,7 @@ module.exports = {
             const result = await query.get(queryString);
             result.sort((a,b) => (new Date(b.createdat)) - (new Date(a.createdat)))
             return res.status(code.OK)
-                .json({ msg: 'Accion exitosa', registros: result});
+                .json({ msg: 'Accion exitosa', registros: result.slice(0,5)});
         } catch (error) {
             console.log(error)
             res.status(code.BAD_REQUEST)
