@@ -9,8 +9,7 @@ module.exports = {
     create: async (req = request, res = response) => {
         try {
             const { description, position, location, recruiterId, jobTypeId, accessTypeId } = req.body;
-            const today = new Date()
-            const job = new jobModel(helpers.idGenerator(), description, position, location, recruiterId, jobTypeId, accessTypeId, today)
+            const job = new jobModel(helpers.idGenerator(), description, position, location, recruiterId, jobTypeId, accessTypeId)
             const dataForQuery = {
                 id: job.id,
                 description: job.description,
@@ -19,7 +18,6 @@ module.exports = {
                 recruiterId: job.recruiterId,
                 jobTypeId: job.jobTypeId,
                 accessTypeId: job.accessTypeId,
-                createdAt: job.createdAt
             }
             const result = await query.insert('job', dataForQuery)
             console.log('Acción realizada con éxito, registro agregado');
@@ -45,10 +43,9 @@ module.exports = {
     },
     getMostRecent: async (req = request, res = response) => {
         try {
-            const queryString = `SELECT job.id, job.description, job.position, job.location, r.name || ' ' || r.lastname as recruiter, jt.type as modality, jat.type as accessType, job.createdat FROM job INNER JOIN recruiter as r ON job.recruiterid = r.id INNER JOIN jobtype as jt ON job.jobtypeid = jt.id INNER JOIN accesstype as jat ON job.accesstypeid = jat.id;`
+            //SELECT job.id, job.description, job.position, job.location, r.name || ' ' || r.lastname as recruiter, jt.type as modality, jat.type as accessType, job.createdat FROM job INNER JOIN recruiter as r ON job.recruiterid = r.id INNER JOIN jobtype as jt ON job.jobtypeid = jt.id INNER JOIN accesstype as jat ON job.accesstypeid = jat.id ORDER BY job.created ASC LIMIT 5;
+            const queryString = `SELECT job.id, job.description, job.position, job.location, r.name || ' ' || r.lastname as recruiter, jt.type as modality, jat.type as accessType, job.createdat FROM job INNER JOIN recruiter as r ON job.recruiterid = r.id INNER JOIN jobtype as jt ON job.jobtypeid = jt.id INNER JOIN accesstype as jat ON job.accesstypeid = jat.id ORDER BY job.created ASC LIMIT 5;`
             const result = await query.get(queryString);
-            console.log('mostrecent 50',result)
-            result.sort((a,b) => (new Date(b.createdat)) - (new Date(a.createdat)))
             return res.status(code.OK)
                 .json({ msg: 'Accion exitosa', registros: result});
         } catch (error) {
