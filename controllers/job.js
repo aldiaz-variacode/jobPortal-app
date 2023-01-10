@@ -43,8 +43,7 @@ module.exports = {
     },
     getMostRecent: async (req = request, res = response) => {
         try {
-            //SELECT job.id, job.description, job.position, job.location, r.name || ' ' || r.lastname as recruiter, jt.type as modality, jat.type as accessType, job.createdat FROM job INNER JOIN recruiter as r ON job.recruiterid = r.id INNER JOIN jobtype as jt ON job.jobtypeid = jt.id INNER JOIN accesstype as jat ON job.accesstypeid = jat.id ORDER BY job.created ASC LIMIT 5;
-            const queryString = `SELECT job.id, job.description, job.position, job.location, r.name || ' ' || r.lastname as recruiter, jt.type as modality, jat.type as accessType, job.createdat FROM job INNER JOIN recruiter as r ON job.recruiterid = r.id INNER JOIN jobtype as jt ON job.jobtypeid = jt.id INNER JOIN accesstype as jat ON job.accesstypeid = jat.id ORDER BY job.created ASC LIMIT 5;`
+            const queryString = `SELECT job.id, job.description, job.position, job.location, r.name || ' ' || r.lastname as recruiter, jt.type as modality, jat.type as accessType, job.createdat FROM job INNER JOIN recruiter as r ON job.recruiterid = r.id INNER JOIN jobtype as jt ON job.jobtypeid = jt.id INNER JOIN accesstype as jat ON job.accesstypeid = jat.id ORDER BY job.createdat DESC LIMIT 5;`
             const result = await query.get(queryString);
             return res.status(code.OK)
                 .json({ msg: 'Accion exitosa', registros: result});

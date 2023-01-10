@@ -22,7 +22,7 @@ router
     .get(jobController.getOne)
 
 router
-    .route('/most-recent')
+    .route('/mostrecent')
     .get(jobController.getMostRecent)
 
 router
