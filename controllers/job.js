@@ -10,7 +10,7 @@ module.exports = {
         try {
             const { description, position, location, recruiterId, jobTypeId, accessTypeId } = req.body;
             const today = new Date(Date.now())
-            const job = new jobModel(helpers.idGenerator(), description, position, location, recruiterId, jobTypeId, accessTypeId, today.toISOString())
+            const job = new jobModel(helpers.idGenerator(), description, position, location, recruiterId, jobTypeId, accessTypeId, today)
             const dataForQuery = {
                 id: job.id,
                 description: job.description,
@@ -33,7 +33,7 @@ module.exports = {
     },
     get: async (req = request, res = response) => {
         try {
-            const queryString = `SELECT job.id, job.description, job.position, job.location, r.name || ' ' || r.lastname as recruiter, jt.type as modality, jat.type as accessType FROM job INNER JOIN recruiter as r ON job.recruiterid = r.id INNER JOIN jobtype as jt ON job.jobtypeid = jt.id INNER JOIN accesstype as jat ON job.accesstypeid = jat.id;`
+            const queryString = `SELECT job.id, job.description, job.position, job.location, r.name || ' ' || r.lastname as recruiter, jt.type as modality, jat.type as accessType, job.createdat FROM job INNER JOIN recruiter as r ON job.recruiterid = r.id INNER JOIN jobtype as jt ON job.jobtypeid = jt.id INNER JOIN accesstype as jat ON job.accesstypeid = jat.id;`
             const result = await query.get(queryString);
             return res.status(code.OK)
                 .json({ msg: 'Accion exitosa', registros: result });
