@@ -35,8 +35,11 @@ module.exports = {
         try {
             const queryString = `SELECT job.id, job.description, job.position, job.location, r.name || ' ' || r.lastname as recruiter, jt.type as modality, jat.type as accessType, job.createdat FROM job INNER JOIN recruiter as r ON job.recruiterid = r.id INNER JOIN jobtype as jt ON job.jobtypeid = jt.id INNER JOIN accesstype as jat ON job.accesstypeid = jat.id;`
             const result = await query.get(queryString);
+            const resultFiltered = result.map(job => {
+                job
+            }).sort(helpers.subtractDate(job, new Date()))
             return res.status(code.OK)
-                .json({ msg: 'Accion exitosa', registros: result });
+                .json({ msg: 'Accion exitosa', registros: result, filter: resultFiltered});
         } catch (error) {
             console.log(error)
             res.status(code.BAD_REQUEST)
