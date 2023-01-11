@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { check } = require('express-validator');
+const { check, param } = require('express-validator');
 const postulationController = require('../controllers/postulation');
 const middlewares = require('../middlewares');
 
@@ -17,6 +17,14 @@ router
     
 router
     .route('/:id')
-    .get(postulationController.getOne)
+    .get([
+        param('id', 'El id del empleo es requerido').notEmpty(),
+    ],postulationController.getOne)
+
+router
+    .route('/:postulantid')
+    .get([
+        param('postulantid', 'El id del postulante es requerido').notEmpty(),
+    ], postulationController.getByPotulantId)
 
 module.exports = router;

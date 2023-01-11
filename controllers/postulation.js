@@ -62,4 +62,17 @@ module.exports = {
                 .json({msg: 'Accion rechazada', error: error})
         }
     },
+    getByPotulantId: async (req = request, res = response) => {
+        try {
+            const {postulantid} = req.params;
+            const queryString = `SELECT * FROM postulation WHERE postulantid = '${postulantid}';`
+            const result = await query.get(queryString);
+            return res.status(code.OK)
+                .json({ msg: 'Accion exitosa', registros: result });
+        } catch (error) {
+            console.log(error)
+            res.status(code.BAD_REQUEST)
+                .json({msg: 'Accion rechazada', error: error})
+        }
+    },
 };
