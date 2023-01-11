@@ -9,13 +9,15 @@ const Mailer = require('../models/mail');
 module.exports = {
     create: async (req = request, res = response) => {
         try {
-            const { name, lastname, email, phone, roleId } = req.body;
-            const postulant = new postulantModel(helpers.idGenerator(), name, lastname, email, phone, roleId)
+            const { name, lastname, email, password, phone, roleId } = req.body;
+            const encryptedPass = helpers.encrypt(password)
+            const postulant = new postulantModel(helpers.idGenerator(), name, lastname, email, encryptedPass, phone, roleId)
             const dataForQuery = {
                 id: postulant.id,
                 name: postulant.name,
                 lastname: postulant.lastname,
                 email: postulant.email,
+                password: postulant.password,
                 phone: postulant.phone,
                 roleId: postulant.roleId,
                 verified: postulant.verified

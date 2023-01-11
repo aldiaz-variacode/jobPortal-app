@@ -34,7 +34,8 @@ router
     .post([
         check('email', 'El email es requerido').notEmpty(),
         check('email', 'El email no es valido').isEmail(),
-        middlewares.isVerified,
+        check('password', 'El password es requerido').notEmpty(),
+        middlewares.accountValidated,
     ], postulantController.login)
 
 module.exports = router;
