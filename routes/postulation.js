@@ -22,7 +22,7 @@ router
     ],postulationController.getOne)
 
 router
-    .route('/:postulantid')
+    .route('postulant/:postulantid')
     .get([
         param('postulantid', 'El id del postulante es requerido').notEmpty(),
     ], postulationController.getByPotulantId)
