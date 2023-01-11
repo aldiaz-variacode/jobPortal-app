@@ -37,5 +37,4 @@ router
         middlewares.isVerified,
     ], postulantController.login)
 
-
 module.exports = router;

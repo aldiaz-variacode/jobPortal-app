@@ -84,21 +84,8 @@ module.exports = {
     login: async ({user} = request, res = response) => {
         try {
             const token = await helpers.jwtGenerator(user.id);
-            const dataForEmail = {
-                mailService: 'gmail',
-                mailTo: user.email,
-                text: `Hola ${user.name}`,
-                html: `
-                <div id="emailTemplate">
-                <p>Para hacer login, ingresa al siguiente enlace:</p>
-                <a href="https://variacodejobposting.netlify.app/#/dashboard/user/${token}">Acceder a perfil</a>
-                </div>
-                `
-            };
-            const mail = new Mailer(dataForEmail.mailService, dataForEmail.mailTo, dataForEmail.text, dataForEmail.html);
-            mail.sendMail()
             return res.status(code.OK)
-                .json({ msg: 'Accion exitosa, en breve recibiras un email para ingresar', url: `https://variacodejobposting.netlify.app/#/dashboard/user/${token}`});
+                .json({ msg: 'Accion exitosa', user, token });
         } catch (error) {
             console.log(error)
             res.status(code.BAD_REQUEST)
