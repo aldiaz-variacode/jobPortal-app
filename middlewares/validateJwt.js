@@ -49,7 +49,7 @@ module.exports = {
             const { id } = jwt.verify( token, process.env.SECRETORPRIVATEKEY);
             console.log(id);
             //leer el user que corresponde al id
-            const queryString = `SELECT p.id, p.name || ' ' || p.lastname as postulant, p.email, p.verified, role.type FROM postulant as p INNER JOIN role ON role.id = p.roleid WHERE p.id = '${id}';`;
+            const queryString = `SELECT p.id, p.name || ' ' || p.lastname as postulant, p.phone, p.email, p.verified, role.type FROM postulant as p INNER JOIN role ON role.id = p.roleid WHERE p.id = '${id}';`;
             const [postulant] = await query.get(queryString);
 
             if ( !postulant ) {
