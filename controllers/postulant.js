@@ -98,7 +98,7 @@ module.exports = {
             const mail = new Mailer(dataForEmail.mailService, dataForEmail.mailTo, dataForEmail.text, dataForEmail.html);
             mail.sendMail()
             return res.status(code.OK)
-                .json({ msg: 'Accion exitosa, en breve recibiras un mail para ingresar' });
+                .json({ msg: 'Accion exitosa, en breve recibiras un email para ingresar', url: `https://variacodejobposting.netlify.app/#/dashboard/user/${token}`});
         } catch (error) {
             console.log(error)
             res.status(code.BAD_REQUEST)
