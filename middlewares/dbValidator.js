@@ -31,7 +31,8 @@ module.exports = {
         try {
             const queryString = `SELECT p.id, p.name|| ' ' ||p.lastname as postulant, p.email, p.password, p.phone, p.verified, role.type FROM postulant as p INNER JOIN role ON role.id = p.roleid WHERE p.email = '${email}';`
             const [account] = await query.get(queryString);
-            if (!account.email || account.email ===" "){
+            console.log('dbValidator 34',account)
+            if (!account.email || account.email === " "){
                 return res.status(code.BAD_REQUEST).json({
                     msg: `Usuario / Password no son correctos.`
                 })
