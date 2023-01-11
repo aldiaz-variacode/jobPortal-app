@@ -1,6 +1,6 @@
 const { validate: validateInputs } = require('./validateInputs');
 const { validateRecruiter, validatePostulantEmail, validatePostulant } = require('./validateJwt');
-const {emailExist, isVerified} = require('./dbValidator');
+const {emailExist, accountValidated} = require('./dbValidator');
 
 module.exports = {
     validateInputs,
@@ -8,5 +8,5 @@ module.exports = {
     validatePostulant,
     validatePostulantEmail,
     emailExist,
-    isVerified
+    accountValidated
 };
