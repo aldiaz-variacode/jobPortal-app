@@ -33,8 +33,8 @@ router
     .route('/login')
     .post([
         check('email', 'El email es requerido').notEmpty(),
-        check('email', 'El email no es valido').isEmail(),
         check('password', 'El password es requerido').notEmpty(),
+        check('email', 'El email no es valido').isEmail(),
         middlewares.accountValidated,
     ], postulantController.login)
 
