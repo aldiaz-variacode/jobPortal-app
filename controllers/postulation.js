@@ -8,7 +8,7 @@ const query = require('../services/querySql')
 module.exports = {
     create: async (req = request, res = response) => {
         try {
-            const { jobId, postulantId, experience } = req.body;
+            const { jobId, postulantId } = req.body;
             const id = helpers.idGenerator();
             const { curriculum } = req.files
             if (!curriculum){
@@ -20,12 +20,11 @@ module.exports = {
                     msg: nameCV.msg
                 })
             }
-            const postulation = new postulationModel(id, jobId, postulantId, experience, nameCV.msg)
+            const postulation = new postulationModel(id, jobId, postulantId, nameCV.msg)
             const dataForQuery = {
                 id: postulation.id,
                 jobId: postulation.jobId,
                 postulantId: postulation.postulantId,
-                experience: postulation.experience,
                 cvUrl: postulation.cvUrl
             }
             const result = await query.insert('postulation', dataForQuery);
