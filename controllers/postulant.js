@@ -106,7 +106,7 @@ module.exports = {
                 html: `
                 <div id="emailTemplate">
                 <p>Para continuar debes confirmar tu solicitud, ingresando al siguiente enlace:</p>
-                <a href="${token}">Solicitar cambio</a>
+                <a href="https://variacodejobposting.netlify.app/#/newPassword/${token}">Solicitar cambio</a>
                 </div>
                 `
             };
