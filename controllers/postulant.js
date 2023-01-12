@@ -123,7 +123,7 @@ module.exports = {
     recoveryPass: async({user, pass} = request, res = response) => {
         try {
             const encryptedPass = helpers.encrypt(pass) 
-            const result = query.update('postulant', `password = ${encryptedPass}`, `id = ${user.id}`);
+            const result = query.update('postulant', `password = ${encryptedPass}`, `id = '${user.id}'`);
             return res.status(code.OK)
                 .json({ msg: 'Accion exitosa', registro: result});
         } catch (error) {
