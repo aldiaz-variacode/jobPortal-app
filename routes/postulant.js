@@ -38,4 +38,20 @@ router
         middlewares.accountValidated,
     ], postulantController.login)
 
+router
+    .route('/requestrecovery')
+    .post([
+        check('email', 'El email es requerido').notEmpty(),
+        check('email', 'El email no es valido').isEmail(),
+        middlewares.passRecovery
+    ], postulantController.requestRecoveryPass)
+
+router
+    .route('/recovery/:token')
+    .post([
+        check('pass', 'Los password son requerido').notEmpty(),
+        check('duplicatePass', 'Los password son requerido').notEmpty(),
+        middlewares.passwordMatch,
+        middlewares.validatePostulantEmail
+    ], postulantController.recoveryPass)
 module.exports = router;

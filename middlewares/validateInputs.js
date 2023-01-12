@@ -11,4 +11,13 @@ module.exports = {
 
         next();
     },
+    passwordMatch: ({body} = request, res = response, next) => {
+        const {pass, duplicatePass} = body;
+            if (pass !== duplicatePass) {
+                return res.status(code.BAD_REQUEST)
+                    .json({ msg: 'Accion rechazada, las password no coinciden'})
+            }
+        req.pass = pass;
+        next();
+    }
 };
