@@ -102,7 +102,7 @@ module.exports = {
                 mailService: 'gmail',
                 mailTo: user.email,
                 subject: 'Solicitud cambio de password',
-                text: `Hola ${user.name}`,
+                text: `Hola ${user.postulant}`,
                 html: `
                 <div id="emailTemplate">
                 <p>Para continuar debes confirmar tu solicitud, ingresando al siguiente enlace:</p>
