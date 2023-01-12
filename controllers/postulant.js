@@ -77,7 +77,7 @@ module.exports = {
             const today = new Date(Date.now())
             const result = await query.update('postulant', `verified = true, verifiedAt = '${today}'`, `id = '${user.id}'`)
             return res.status(code.OK)
-                .json({result});
+                .json({msg: 'Accion exitosa'});
         } catch (error) {
             console.log(error)
             res.status(code.BAD_REQUEST)
@@ -110,7 +110,7 @@ module.exports = {
                 </div>
                 `
             };
-            const mail = new Mailer(dataForEmail.mailService, dataForEmail.mailTo, dataForEmail.text, dataForEmail.html);
+            const mail = new Mailer(dataForEmail.mailService, dataForEmail.mailTo, dataForEmail.subject, dataForEmail.text, dataForEmail.html);
             mail.sendMail()
             return res.status(code.OK)
                 .json({ msg: 'Accion exitosa, en breve recibiras un correo con instrucciones'});
