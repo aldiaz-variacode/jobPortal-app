@@ -1,7 +1,8 @@
 const { response, request } = require('express');
 const { StatusCodes:code } = require('http-status-codes');
 const bcrypt = require('bcryptjs');
-const query = require('../services/querySql')
+const query = require('../services/querySql');
+const postulation = require('../controllers/postulation');
 
 module.exports = {
     emailExist: async (req = request, res = response, next) => {
@@ -84,8 +85,9 @@ module.exports = {
         const { jobId, postulantId } = req.body;
         try {
             const queryString = `SELECT * FROM postulation WHERE postulantid = '${postulantId}';`;
-            const postulant = await query.get(queryString);
-            if (postulant.length > 0){
+            const postulantion = await query.get(queryString);
+            const postulationMap = postulantion.map(job => job.jobid)
+            if (postulationMap.includes(jobId)){
                 return res.status(code.BAD_REQUEST).json({
                     msg: `Ya has postulado a este empleo.`
                 })

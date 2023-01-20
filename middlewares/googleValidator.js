@@ -1,7 +1,6 @@
 const { response, request } = require('express');
 const { StatusCodes:code } = require('http-status-codes');
-const query = require('../services/querySql')
-
+const helpers = require('../helpers')
 
 module.exports = {
     googleVerify: async (req = request, res = response, next) => {
