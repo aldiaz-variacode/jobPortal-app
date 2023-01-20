@@ -12,7 +12,8 @@ router
         check('jobId', 'El id del empleo es requerido').notEmpty(),
         check('postulantId', 'El id del postulante es requerido').notEmpty(),
         // check('cvUrl', 'El cv es requerido').notEmpty(),
-        middlewares.validateInputs
+        middlewares.validateInputs,
+        middlewares.postulantExist
     ], postulationController.create)
     
 router
@@ -31,7 +32,6 @@ router
     .route('/job/:jobid')
     .get([
         param('jobid', 'El id del empleo es requerido').notEmpty(),
-        middlewares.postulantExist
     ], postulationController.getPostulantByJobId)
 
 module.exports = router;
