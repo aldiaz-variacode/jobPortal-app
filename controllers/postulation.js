@@ -8,7 +8,7 @@ const query = require('../services/querySql')
 module.exports = {
     create: async (req = request, res = response) => {
         try {
-            const { jobId, postulantId } = req.body;
+            const { jobId, postulantId } = req.postulation;
             const id = helpers.idGenerator();
             const { curriculum } = req.files
             if (!curriculum){

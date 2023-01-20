@@ -79,5 +79,23 @@ module.exports = {
                 msg: 'Ponganse en contacto con un administrador'
             })
         }
+    },
+    postulantExist: async (req = request, res = response, next) => {
+        const { jobId, postulantId } = req.body;
+        try {
+            const queryString = `SELECT * FROM postulation WHERE postulantid = '${postulantId}';`;
+            const postulant = await query.get(queryString);
+            if (postulant.length > 0){
+                return res.status(code.BAD_REQUEST).json({
+                    msg: `Ya has postulado a este empleo.`
+                })
+            }
+            req.postulation = { jobId, postulantId}
+        } catch (error) {
+            console.log(error);
+            res.status(code.INTERNAL_SERVER_ERROR).json({
+                msg: 'Ponganse en contacto con un administrador'
+            })
+        }
     }
 }
