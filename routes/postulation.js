@@ -31,7 +31,6 @@ router
     .route('/job/:jobid')
     .get([
         param('jobid', 'El id del empleo es requerido').notEmpty(),
-    ],
-        postulationController.getPostulantByJobId)
+    ], postulationController.getPostulantByJobId)
 
 module.exports = router;
