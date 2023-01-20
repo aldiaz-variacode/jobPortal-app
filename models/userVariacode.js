@@ -1,12 +1,11 @@
-class Recruiter {
-    constructor(id, name, lastname, email, roleId, google = false){
+class userVariacode {
+    constructor(id, name, lastname, email, roleId){
         this.id = id;
         this.name = name;
         this.lastname = lastname;
         this.email = email;
         this.roleId = roleId;
-        this.google = google;
     }
 }
 
-module.exports = Recruiter;
+module.exports = userVariacode;

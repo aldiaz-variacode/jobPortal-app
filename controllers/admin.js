@@ -1,38 +1,34 @@
 const { response, request } = require('express');
 const { StatusCodes: code } = require('http-status-codes');
+const userVariacode = require('../models/userVariacode')
 const helpers = require('../helpers')
 const query = require('../services/querySql')
 
-
 module.exports = {
-    get: async (req = request, res = response) => {
+    createRecruiter: async (req = request, res = response) => {
         try {
-            const queryString = `SELECT * FROM recruiter;`
-            const result = await query.get(queryString);
-            return res.status(code.OK)
-                .json({ msg: 'Accion exitosa', registros: result });
+            const { name, lastname, email, roleId } = req.body;
+            const recruiter = new userVariacode(helpers.idGenerator(), name, lastname, email, roleId)
+            const dataForQuery = {
+                id: recruiter.id,
+                name: recruiter.name,
+                lastname: recruiter.lastname,
+                email: recruiter.email,
+                roleId: recruiter.roleId
+            }
+            const result = await query.insert('recruiter', dataForQuery);
+            console.log('Acción realizada con éxito, registro agregado');
+            res.status(code.CREATED)
+                .json({msg: 'Acción realizada con éxito, registro agregado', registro: result[0]});
         } catch (error) {
             console.log(error)
             res.status(code.BAD_REQUEST)
                 .json({msg: 'Accion rechazada', error: error})
         }
     },
-    getOne: async (req = request, res = response) => {
+    login: async (req = request, res = response) => {
         try {
-            const {id} = req.params;
-            const queryString = `SELECT * FROM recruiter WHERE id = '${id};`
-            const result = await query.get(queryString);
-            return res.status(code.OK)
-                .json({ msg: 'Accion exitosa', registros: result });
-        } catch (error) {
-            console.log(error)
-            res.status(code.BAD_REQUEST)
-                .json({msg: 'Accion rechazada', error: error})
-        }
-    },
-    googleSignIn: async ({email} = request, res = response) => {
-        try {
-            const queryString = `SELECT r.id, r.name || ' ' || r.lastname as recruiter, r.email, role.type FROM recruiter as r INNER JOIN role ON role.id = r.roleid WHERE r.email = '${email}';`;
+            const queryString = `SELECT a.id, a.name || ' ' || a.lastname as admin, a.email, role.type FROM admin as a INNER JOIN role ON role.id = a.roleid WHERE a.email = '${email}';`;
             let [user] = await query.get(queryString);
             if (!user) {
                 // Si el usuario no existe
@@ -57,5 +53,5 @@ module.exports = {
                     error
                 })
         }
-    },
-};
+    }
+}

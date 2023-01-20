@@ -77,5 +77,5 @@ module.exports = {
             res.status(code.BAD_REQUEST)
                 .json({msg: 'Accion rechazada', error: error})
         }
-    }
+    },
 };

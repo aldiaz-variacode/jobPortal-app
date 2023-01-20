@@ -75,4 +75,17 @@ module.exports = {
                 .json({msg: 'Accion rechazada', error: error})
         }
     },
+    getPostulantByJobId: async () => {
+        try {
+            const {jobId} = req.params;
+            const queryString = `SELECT p.jobid, job.position as jobposition, postulant.name||' '||postulant.lastname as postulant, postulant.email, postulant.phone FROM postulation as p INNER JOIN job ON job.id = p.jobid INNER JOIN postulant ON postulant.id = p.postulantid WHERE jobid = '${jobId}';`
+            const result = await query.get(queryString);
+            return res.status(code.OK)
+                .json({msg: 'Accion exitosa', registros: result})
+        } catch (error) {
+            console.log(error)
+            res.status(code.BAD_REQUEST)
+                .json({msg: 'Accion rechazada', error: error})
+        }
+    }
 };
